@@ -1,8 +1,8 @@
-export default class Vis1 extends Phaser.Sprite {
+export default class Worm1 extends Phaser.Sprite {
 	constructor(game, x, y, frame) {
-		super(game, x, y, 'vis1', frame);
-		this.animations.add('vis1');
-		this.animations.play('vis1', 12, true);
+		super(game, x, y, 'worm1', frame);
+		this.animations.add('worm1');
+		this.animations.play('worm1', 12, true);
 		this.anchor.setTo(0.5, 0.5);
 		this.game.physics.arcade.enableBody(this);
 		this.alive = true;
@@ -11,7 +11,7 @@ export default class Vis1 extends Phaser.Sprite {
 
 	}
 	reset(x,y){
-		this.body.velocity.x = -100;
+		this.body.velocity.x = 100;
 		this.x = x;
 		this.y = y;
 		this.exists = true;
