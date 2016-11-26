@@ -7,7 +7,7 @@ export default class Worm1 extends Phaser.Sprite {
 		this.game.physics.arcade.enableBody(this);
 		this.alive = true;
 		this.points = 5;
-		this.lives = 3;
+		this.lives = 1;
 
 	}
 	reset(x,y){
@@ -24,7 +24,7 @@ export default class Worm1 extends Phaser.Sprite {
 		this.alpha = 0;
 		this.lives--;
 		if (this.lives == 0) {
-			this.deathSound.play();
+			//this.deathSound.play();
 			this.destroy();
 		}
 	}
@@ -39,5 +39,6 @@ export default class Worm1 extends Phaser.Sprite {
 			this.exists = false;
 			this.destroy();
 		}
+		
 	}
 }
