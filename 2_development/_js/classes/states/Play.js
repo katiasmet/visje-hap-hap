@@ -1,6 +1,10 @@
 import Player from '../objects/Player';
 import Vis1 from '../objects/Vis1';
+import Vis2 from '../objects/Vis2';
+import Vis3 from '../objects/Vis3';
 import Worm1 from '../objects/Worm1';
+import Worm2 from '../objects/Worm2';
+import Worm3 from '../objects/Worm3';
 export default class Play extends Phaser.State{
 
 	create(){
@@ -28,8 +32,14 @@ export default class Play extends Phaser.State{
 			this.secondLoop, this);
 
 			this.cursors = this.game.input.keyboard.createCursorKeys();
-			this.key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+			this.key1 = this.game.input.keyboard.addKey(65);
 			this.key1.onDown.add(this.generateWorm1, this);
+
+			this.key2 = this.game.input.keyboard.addKey(90);
+			this.key2.onDown.add(this.generateWorm2, this);
+
+			this.key3 = this.game.input.keyboard.addKey(69);
+			this.key3.onDown.add(this.generateWorm3, this);
 
 		}
 
@@ -38,6 +48,20 @@ export default class Play extends Phaser.State{
 			this.wormpjes.add(worm1,true);
 			worm1.reset(this.player.body.x+this.player.body.width/2, this.player.body.y);
 			worm1.body.velocity.x = 300;
+		}
+
+		generateWorm2(){
+			var worm2 = new Worm2(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
+			this.wormpjes.add(worm2,true);
+			worm2.reset(this.player.body.x+this.player.body.width/2, this.player.body.y);
+			worm2.body.velocity.x = 300;
+		}
+
+		generateWorm3(){
+			var worm3 = new Worm3(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
+			this.wormpjes.add(worm3,true);
+			worm3.reset(this.player.body.x+this.player.body.width/2, this.player.body.y);
+			worm3.body.velocity.x = 300;
 		}
 
 		secondLoop(){
@@ -49,19 +73,51 @@ export default class Play extends Phaser.State{
 
 		generatevisjes() {
 			if (this.visjes.children.length < this.maxVisjes) {
-				var vis1y = this.game.rnd.integerInRange(38, this.game.height-38);
-				var	vis1 = new Vis1(this.game, this.game.width, vis1y);
-				this.visjes.add(vis1,true);
-				vis1.reset(this.game.width, vis1y);
+
+				this.welkeVis = this.game.rnd.integerInRange(1, 3);
+
+				switch (this.welkeVis) {
+					case 1:
+					var vis1y = this.game.rnd.integerInRange(38, this.game.height-38);
+					var	vis1 = new Vis1(this.game, this.game.width, vis1y);
+					this.visjes.add(vis1,true);
+					vis1.reset(this.game.width, vis1y);
+					break;
+
+					case 2:
+					var vis2y = this.game.rnd.integerInRange(38, this.game.height-38);
+					var	vis2 = new Vis2(this.game, this.game.width, vis2y);
+					this.visjes.add(vis2,true);
+					vis2.reset(this.game.width, vis2y);
+					break;
+
+					case 3:
+					var vis3y = this.game.rnd.integerInRange(38, this.game.height-38);
+					var	vis3 = new Vis3(this.game, this.game.width, vis3y);
+					this.visjes.add(vis3,true);
+					vis3.reset(this.game.width, vis3y);
+					break;
+
+				}
+
+
 			}
 
 		}
 
 		wormraakvis(worm, vis){
-			vis.kill();
 			worm.kill();
-			//console.log(worm);
-			//console.log(vis);
+			vis.body.velocity.x = -100;
+
+			if (vis.type === worm.type) {
+				vis.kill();
+
+			}else{
+
+			}
+			//vis.body.velocity.x = -100;;
+			//console.log(vis.type);
+			//console.log(worm.type);
 		}
 
 		update(){
@@ -88,13 +144,11 @@ export default class Play extends Phaser.State{
 				}
 
 				this.visjes.forEach(visje => {
-
 					this.wormpjes.forEach(worm => {
-
 						this.game.physics.arcade.collide(worm, visje,
 							this.wormraakvis, null, this);
+						});
 					});
-				});
 				}
 			}
 

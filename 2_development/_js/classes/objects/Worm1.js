@@ -8,6 +8,7 @@ export default class Worm1 extends Phaser.Sprite {
 		this.alive = true;
 		this.points = 5;
 		this.lives = 1;
+		this.type = 1;
 
 	}
 	reset(x,y){
@@ -39,6 +40,6 @@ export default class Worm1 extends Phaser.Sprite {
 			this.exists = false;
 			this.destroy();
 		}
-		
+
 	}
 }
