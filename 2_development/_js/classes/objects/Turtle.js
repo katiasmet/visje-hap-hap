@@ -1,0 +1,63 @@
+export default class Turtle extends Phaser.Sprite {
+	constructor(game, x, y, frame) {
+		super(game, x, y, 'turtle_sad', frame);
+
+    this.animations.add('turtle_sad');
+		this.animations.play('turtle_sad', 10, true);
+
+    this.anchor.setTo(0.5, 0.5);
+		this.game.physics.arcade.enableBody(this);
+		this.alive = true;
+		this.points = 5;
+		this.lives = 1;
+		this.type = 1;
+
+	}
+	reset(x,y){
+		this.body.velocity.x = -100;
+		this.x = x;
+		this.y = y;
+		this.exists = true;
+		this.hasScored = false;
+	}
+
+	hitwrong(){
+		this.body.velocity.x = -100;
+	}
+
+	kill(){
+
+		this.body.velocity.y = 0;
+		this.body.velocity.x = 0;
+		//this.alpha = 0;
+		this.lives--;
+		if (this.lives == 0) {
+			//this.deathSound.play();
+			console.log(this);
+			//this.destroy();
+			this.loadTexture('vis1_eating', 0);
+
+	 this.animations.add('eating');
+
+	 this.animations.play('eating', 12, true);
+		}
+	}
+
+
+	update(){
+		if (this.alpha < 1) {
+			this.alpha = this.alpha + 0.05;
+		}
+
+		if(!this.inWorld) {
+			this.exists = false;
+			this.destroy();
+		}
+
+
+
+		if(this.x < 400){
+			this.body.velocity.x = 0;
+		}
+	}
+}
