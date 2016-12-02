@@ -1,14 +1,16 @@
-export default class Vis1 extends Phaser.Sprite {
+export default class Fish extends Phaser.Sprite {
 	constructor(game, x, y, frame) {
-		super(game, x, y, 'vis1', frame);
-		this.animations.add('vis1');
-		this.animations.play('vis1', 12, true);
+		super(game, x, y, 'fish_sad', frame);
+
+    this.animations.add('fish_sad');
+		this.animations.play('fish_sad', 10, true);
+
 		this.anchor.setTo(0.5, 0.5);
 		this.game.physics.arcade.enableBody(this);
 		this.alive = true;
 		this.points = 5;
 		this.lives = 1;
-		this.type = 1;
+		this.type = 2;
 
 	}
 	reset(x,y){
@@ -18,7 +20,6 @@ export default class Vis1 extends Phaser.Sprite {
 		this.exists = true;
 		this.hasScored = false;
 	}
-
 	hitwrong(){
 		this.body.velocity.x = -100;
 	}

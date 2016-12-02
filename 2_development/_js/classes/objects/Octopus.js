@@ -1,4 +1,4 @@
-export default class Vis3 extends Phaser.Sprite {
+export default class Octopus extends Phaser.Sprite {
 	constructor(game, x, y, frame) {
 		super(game, x, y, 'vis3', frame);
 		this.animations.add('vis3');

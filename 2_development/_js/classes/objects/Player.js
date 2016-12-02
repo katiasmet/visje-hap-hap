@@ -2,10 +2,13 @@ export default class Player extends Phaser.Sprite {
 	constructor(game, x, y, frame) {
 		super(game, x, y, 'player', frame);
 
-		this.animations.add('zwem');
-		this.animations.play('zwem', 10, true);
-		this.anchor.setTo(0.5, 0.5);
+		this.animations.add('swimming');
+		this.animations.play('swimming', 10, true);
+
+    this.anchor.setTo(0.5, 0.5);
 		this.game.physics.arcade.enableBody(this);
+    this.game.physics.arcade.enable(this);
+    this.body.collideWorldBounds = true;
 		this.lives = 3;
 	}
 

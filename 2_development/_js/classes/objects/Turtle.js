@@ -1,14 +1,16 @@
-export default class Vis2 extends Phaser.Sprite {
+export default class Turtle extends Phaser.Sprite {
 	constructor(game, x, y, frame) {
-		super(game, x, y, 'vis2', frame);
-		this.animations.add('vis2');
-		this.animations.play('vis2', 12, true);
-		this.anchor.setTo(0.5, 0.5);
+		super(game, x, y, 'turtle_sad', frame);
+
+    this.animations.add('turtle_sad');
+		this.animations.play('turtle_sad', 10, true);
+
+    this.anchor.setTo(0.5, 0.5);
 		this.game.physics.arcade.enableBody(this);
 		this.alive = true;
 		this.points = 5;
 		this.lives = 1;
-		this.type = 2;
+		this.type = 1;
 
 	}
 	reset(x,y){
@@ -18,6 +20,7 @@ export default class Vis2 extends Phaser.Sprite {
 		this.exists = true;
 		this.hasScored = false;
 	}
+
 	hitwrong(){
 		this.body.velocity.x = -100;
 	}

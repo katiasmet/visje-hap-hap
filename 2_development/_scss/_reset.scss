@@ -15,8 +15,7 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
-  /* stylelint-disable-line */
+  font: inherit; /* stylelint-disable-line */
   vertical-align: baseline;
 }
 
@@ -54,8 +53,7 @@ html {
   font-size: 62.5%;
 }
 
-*, *::before, *::after {
-  /* stylelint-disable-line */
+*, *::before, *::after { /* stylelint-disable-line */
   box-sizing: inherit;
 }
 
@@ -67,8 +65,4 @@ html,
 body {
   margin: 0;
   padding: 0;
-}
-
-body {
-  background: none;
 }
