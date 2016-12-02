@@ -45,7 +45,7 @@ export default class Preload extends Phaser.State{
 
     //worms
 		//this.load.spritesheet('worm1', 'assets/images/worm1.png', 925/8, 125, 8);
-		this.load.atlasJSONHash('worm1', 'assets/images/food_small.png', 'assets/data/food_small.json');
+	//	this.load.atlasJSONHash('worm1', 'assets/images/food_small.png', 'assets/data/food_small.json');
 		this.load.spritesheet('worm2', 'assets/images/worm2.png', 925/8, 125, 8);
 		this.load.spritesheet('worm3', 'assets/images/worm3.png', 925/8, 125, 8);
 

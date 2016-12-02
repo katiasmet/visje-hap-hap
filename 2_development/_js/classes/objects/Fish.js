@@ -10,7 +10,7 @@ export default class Fish extends Phaser.Sprite {
 		this.alive = true;
 		this.points = 5;
 		this.lives = 1;
-		this.type = 2;
+		this.type = 1;
 
 	}
 	reset(x,y){
@@ -30,15 +30,31 @@ export default class Fish extends Phaser.Sprite {
 		//this.alpha = 0;
 		this.lives--;
 		if (this.lives == 0) {
-			//this.deathSound.play();
-			console.log(this);
-			//this.destroy();
-			this.loadTexture('vis2_eating', 0);
+		
+			this.loadTexture('fish_eating', 0);
 
 	 this.animations.add('eating');
 
 	 this.animations.play('eating', 12, true);
+
+	 this.game.time.events.add(Phaser.Timer.SECOND * 0.5, this.blij, this);
 		}
+	}
+
+	blij(){
+		this.loadTexture('fish_happy', 0);
+
+ this.animations.add('happy');
+
+ this.animations.play('happy', 12, true);
+ this.game.time.events.add(Phaser.Timer.SECOND * 0.5, this.run, this);
+
+	}
+
+	run(){
+		this.game.add.tween(this.scale).to( { x: -1 }, 200, "Linear", true);
+		this.game.add.tween(this.body.velocity).to( { x: 300 }, 500, "Linear", true);
+		this.game.time.events.add(Phaser.Timer.SECOND * 5, this.destroy, this);
 	}
 
 
@@ -47,10 +63,10 @@ export default class Fish extends Phaser.Sprite {
 			this.alpha = this.alpha + 0.05;
 		}
 
-		if(!this.inWorld) {
+		/*if(!this.inWorld) {
 			this.exists = false;
 			this.destroy();
-		}
+		}*/
 
 
 

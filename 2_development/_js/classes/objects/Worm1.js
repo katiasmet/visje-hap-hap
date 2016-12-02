@@ -1,8 +1,8 @@
 export default class Worm1 extends Phaser.Sprite {
 	constructor(game, x, y, frame) {
-		super(game, x, y, 'worm1', frame);
-		this.animations.add('worm1');
-		this.animations.play('worm1', 12, true);
+		super(game, x, y, 'red_food', frame);
+		this.animations.add('red_food');
+		this.animations.play('red_food', 12, true);
 		this.anchor.setTo(0.5, 0.5);
 		this.game.physics.arcade.enableBody(this);
 		this.alive = true;
