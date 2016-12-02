@@ -26,12 +26,18 @@ export default class Fish extends Phaser.Sprite {
 
 	kill(){
 		this.body.velocity.y = 0;
-		this.body.velocity.x = 100;
-		this.alpha = 0;
+		this.body.velocity.x = 0;
+		//this.alpha = 0;
 		this.lives--;
 		if (this.lives == 0) {
 			//this.deathSound.play();
-			this.destroy();
+			console.log(this);
+			//this.destroy();
+			this.loadTexture('vis2_eating', 0);
+
+	 this.animations.add('eating');
+
+	 this.animations.play('eating', 12, true);
 		}
 	}
 

@@ -54,26 +54,26 @@ export default class Play extends Phaser.State{
     this.yellowKey.onDown.add(this.generateWorm3, this);
   }
 
-	generateWorm1(){
-		var worm1 = new Worm1(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
-		this.wormpjes.add(worm1,true);
-		worm1.reset(this.player.body.x+this.player.body.width/2, this.player.body.y);
-		worm1.body.velocity.x = 300;
-	}
+  generateWorm1(){
+    var worm1 = new Worm1(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
+    this.wormpjes.add(worm1,true);
+    worm1.reset(this.player.body.x+this.player.body.width/2, this.player.body.y+this.player.body.height/2);
+    worm1.body.velocity.x = 300;
+  }
 
-	generateWorm2(){
-		var worm2 = new Worm2(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
-		this.wormpjes.add(worm2,true);
-		worm2.reset(this.player.body.x+this.player.body.width/2, this.player.body.y);
-		worm2.body.velocity.x = 300;
-	}
+  generateWorm2(){
+    var worm2 = new Worm2(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
+    this.wormpjes.add(worm2,true);
+    worm2.reset(this.player.body.x+this.player.body.width/2, this.player.body.y+this.player.body.height/2);
+    worm2.body.velocity.x = 300;
+  }
 
-	generateWorm3(){
-		var worm3 = new Worm3(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
-		this.wormpjes.add(worm3,true);
-		worm3.reset(this.player.body.x+this.player.body.width/2, this.player.body.y);
-		worm3.body.velocity.x = 300;
-	}
+  generateWorm3(){
+    var worm3 = new Worm3(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
+    this.wormpjes.add(worm3,true);
+    worm3.reset(this.player.body.x+this.player.body.width/2, this.player.body.y+this.player.body.height/2);
+    worm3.body.velocity.x = 300;
+  }
 
 	secondLoop(){
 		this.teller++;
@@ -111,9 +111,9 @@ export default class Play extends Phaser.State{
 
 		}
 
-	}
+  }
 
-	handleWormFishCollision(worm, vis){
+  handleWormFishCollision(worm, vis){
 		worm.kill();
 		vis.body.velocity.x = -100;
 
