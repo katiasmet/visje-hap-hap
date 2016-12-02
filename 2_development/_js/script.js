@@ -8,7 +8,7 @@ let game;
 const init = () => {
 
 	//game = new Phaser.Game(Window.innerWidth,Window.innerHeight, Phaser.AUTO);
-	game = new Phaser.Game(1200,1000, Phaser.AUTO);
+	game = new Phaser.Game(1200,900, Phaser.AUTO);
 
 	game.state.add('Boot', Boot, true);
   game.state.add('Preload', Preload, false);

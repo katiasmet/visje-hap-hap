@@ -12,11 +12,13 @@ export default class Play extends Phaser.State{
 
 		this.achtergrond = this.game.add.group();
 
-		this.bg = this.game.add.sprite(0,0,'bg');
-		this.achtergrond.add(this.bg,true);
+		//this.bg = this.game.add.tilesprite(0,0,'bg', this.game.width, this.game.height);
+		//this.achtergrond.add(this.bg,true);
+
+		this.tilesprite = this.game.add.tileSprite(0, 0, 1200,1000, 'bg');
 		//this.sound.mute = false;
 
-		this.player = new Player(this.game, this.game.width/2, this.game.height-100);
+		this.player = new Player(this.game, 50, this.game.height/2);
 		this.game.add.existing(this.player);
 		this.player.anchor.setTo(0.5, 0.5);
 		this.game.physics.arcade.enable(this.player);
@@ -46,21 +48,21 @@ export default class Play extends Phaser.State{
 		generateWorm1(){
 			var worm1 = new Worm1(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
 			this.wormpjes.add(worm1,true);
-			worm1.reset(this.player.body.x+this.player.body.width/2, this.player.body.y);
+			worm1.reset(this.player.body.x+this.player.body.width/2, this.player.body.y+this.player.body.height/2);
 			worm1.body.velocity.x = 300;
 		}
 
 		generateWorm2(){
 			var worm2 = new Worm2(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
 			this.wormpjes.add(worm2,true);
-			worm2.reset(this.player.body.x+this.player.body.width/2, this.player.body.y);
+			worm2.reset(this.player.body.x+this.player.body.width/2, this.player.body.y+this.player.body.height/2);
 			worm2.body.velocity.x = 300;
 		}
 
 		generateWorm3(){
 			var worm3 = new Worm3(this.game, this.player.body.x+this.player.body.width/2, this.player.body.y);
 			this.wormpjes.add(worm3,true);
-			worm3.reset(this.player.body.x+this.player.body.width/2, this.player.body.y);
+			worm3.reset(this.player.body.x+this.player.body.width/2, this.player.body.y+this.player.body.height/2);
 			worm3.body.velocity.x = 300;
 		}
 
