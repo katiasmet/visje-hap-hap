@@ -32,12 +32,12 @@ export default class Turtle extends Phaser.Sprite {
 		//this.alpha = 0;
 		this.lives--;
 		if (this.lives == 0) {
-			
+
 			this.loadTexture('turtle_eating', 0);
 
 	 this.animations.add('eating');
 
-	 this.animations.play('eating', 12, true);
+	 this.animations.play('eating', 10, true);
 	 this.game.time.events.add(Phaser.Timer.SECOND * 0.5, this.run, this);
 		}
 	}
@@ -47,7 +47,7 @@ export default class Turtle extends Phaser.Sprite {
 
  this.animations.add('happy');
 
- this.animations.play('happy', 12, true);
+ this.animations.play('happy', 10, true);
  this.game.time.events.add(Phaser.Timer.SECOND * 0.5, this.run, this);
 
 	}

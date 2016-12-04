@@ -16,9 +16,17 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":1498,"h":552},
 	"sourceSize": {"w":1498,"h":552}
 },
+"bubble.png":
+{
+	"frame": {"x":1498,"y":363,"w":220,"h":202},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":220,"h":202},
+	"sourceSize": {"w":220,"h":202}
+},
 "coralcoral_1.png":
 {
-	"frame": {"x":1498,"y":363,"w":122,"h":301},
+	"frame": {"x":1718,"y":363,"w":122,"h":301},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":122,"h":301},
@@ -26,7 +34,7 @@
 },
 "coralcoral_2.png":
 {
-	"frame": {"x":1620,"y":363,"w":118,"h":309},
+	"frame": {"x":1840,"y":363,"w":118,"h":309},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":118,"h":309},
@@ -34,7 +42,7 @@
 },
 "coralcoral_3.png":
 {
-	"frame": {"x":1738,"y":363,"w":162,"h":180},
+	"frame": {"x":0,"y":915,"w":162,"h":180},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":162,"h":180},
@@ -42,7 +50,7 @@
 },
 "coralcoral_4.png":
 {
-	"frame": {"x":1900,"y":363,"w":115,"h":246},
+	"frame": {"x":162,"y":915,"w":115,"h":246},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":115,"h":246},
@@ -50,7 +58,7 @@
 },
 "coralcoral_5.png":
 {
-	"frame": {"x":0,"y":915,"w":104,"h":242},
+	"frame": {"x":277,"y":915,"w":104,"h":242},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":104,"h":242},
@@ -58,7 +66,7 @@
 },
 "coralcoral_6.png":
 {
-	"frame": {"x":104,"y":915,"w":169,"h":142},
+	"frame": {"x":381,"y":915,"w":169,"h":142},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":169,"h":142},
@@ -66,7 +74,7 @@
 },
 "front_stone_1.png":
 {
-	"frame": {"x":273,"y":915,"w":1159,"h":306},
+	"frame": {"x":550,"y":915,"w":1159,"h":306},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1159,"h":306},
@@ -79,11 +87,35 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":986,"h":265},
 	"sourceSize": {"w":986,"h":265}
+},
+"info.png":
+{
+	"frame": {"x":986,"y":1221,"w":109,"h":100},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":109,"h":100},
+	"sourceSize": {"w":109,"h":100}
+},
+"logo.png":
+{
+	"frame": {"x":1095,"y":1221,"w":695,"h":456},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":695,"h":456},
+	"sourceSize": {"w":695,"h":456}
+},
+"play.png":
+{
+	"frame": {"x":1790,"y":1221,"w":219,"h":202},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":219,"h":202},
+	"sourceSize": {"w":219,"h":202}
 }},
 "meta": {
 	"app": "Adobe Animate",
 	"version": "16.0.0.112",
-	"image": "background_assets.png",
+	"image": "assets.png",
 	"format": "RGBA8888",
 	"size": {"w":2048,"h":2048},
 	"scale": "1"

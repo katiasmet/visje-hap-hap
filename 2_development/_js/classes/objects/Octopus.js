@@ -1,9 +1,11 @@
 export default class Octopus extends Phaser.Sprite {
 	constructor(game, x, y, frame) {
-		super(game, x, y, 'vis3', frame);
-		this.animations.add('vis3');
-		this.animations.play('vis3', 12, true);
-		this.anchor.setTo(0.5, 0.5);
+		super(game, x, y, 'octopus_sad', frame);
+
+    this.animations.add('octopus_sad');
+		this.animations.play('octopus_sad', 10, true);
+
+    this.anchor.setTo(0.5, 0.5);
 		this.game.physics.arcade.enableBody(this);
 		this.alive = true;
 		this.points = 5;

@@ -1,4 +1,5 @@
 import Background from '../objects/Background';
+import BackgroundStone from '../objects/BackgroundStone';
 
 import Player from '../objects/Player';
 
@@ -19,6 +20,15 @@ export default class Play extends Phaser.State{
 
     this.background = new Background(this.game, 0, 0, this.game.width, this.game.height);
     this.game.add.existing(this.background);
+
+		this.stones = this.game.add.group();
+		//this.stone = new BackgroundStone(this.game, this.game.width, this.game.height);
+    //this.stones.add(this.stone);
+
+    this.stonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 3,
+      () => { this.generateObjects(this.game, ...[this.stones], 'stones'); }
+      , this);
+    this.game.add.existing(this.stones);
 
     this.player = new Player(this.game, this.game.width/6, this.game.height/2);
     this.game.add.existing(this.player);
@@ -112,6 +122,26 @@ export default class Play extends Phaser.State{
 		}
 
   }
+
+	generateObjects(game, objects, objectType) {
+
+    let object = objects.getFirstDead();
+
+    if(!object) {
+	    if(objectType === 'stones') {
+	      object = new BackgroundStone(game, game.width, game.height, true);
+	    } else {
+	      object = new Coral(game, game.width, game.height - 25);
+	    }
+
+	    objects.add(object);
+	  }
+
+    object.reset(game.width, game.height);
+	  object.randomObject(game);
+	  game.add.existing(objects);
+
+	}
 
   handleWormFishCollision(worm, vis){
 		worm.kill();
