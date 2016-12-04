@@ -30,7 +30,6 @@ export default class Play extends Phaser.State{
     this.frontStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 4,
       () => { this.generateObjects(this.game, ...[this.stones], 'stones', true); }
       , this);
-
     this.game.add.existing(this.stones);
 
     this.player = new Player(this.game, this.game.width/6, this.game.height/2);
@@ -132,7 +131,7 @@ export default class Play extends Phaser.State{
 
     if(!object) {
 	    if(objectType === 'stones') {
-	      object = new BackgroundStone(game, game.width, game.height, front);
+	      object = new BackgroundStone(game, 0, game.height, front);
 	    } else {
 	      object = new Coral(game, game.width, game.height - 25);
 	    }
