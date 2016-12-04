@@ -24,10 +24,13 @@ export default class Play extends Phaser.State{
 		this.stones = this.game.add.group();
 		//this.stone = new BackgroundStone(this.game, this.game.width, this.game.height);
     //this.stones.add(this.stone);
-
-    this.stonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 3,
-      () => { this.generateObjects(this.game, ...[this.stones], 'stones'); }
+		this.backStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 4,
+      () => { this.generateObjects(this.game, ...[this.stones], 'stones', false); }
       , this);
+    this.frontStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 4,
+      () => { this.generateObjects(this.game, ...[this.stones], 'stones', true); }
+      , this);
+
     this.game.add.existing(this.stones);
 
     this.player = new Player(this.game, this.game.width/6, this.game.height/2);
@@ -123,13 +126,13 @@ export default class Play extends Phaser.State{
 
   }
 
-	generateObjects(game, objects, objectType) {
+	generateObjects(game, objects, objectType, front) {
 
     let object = objects.getFirstDead();
 
     if(!object) {
 	    if(objectType === 'stones') {
-	      object = new BackgroundStone(game, game.width, game.height, true);
+	      object = new BackgroundStone(game, game.width, game.height, front);
 	    } else {
 	      object = new Coral(game, game.width, game.height - 25);
 	    }
