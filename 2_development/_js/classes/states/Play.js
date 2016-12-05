@@ -22,14 +22,13 @@ export default class Play extends Phaser.State{
     this.handleBackground();
 
     this.visjes = this.game.add.group();
-    this.wormpjes = this.game.add.group();
 
     this.player = new Player(this.game, this.game.width/6, this.game.height/2);
     this.game.add.existing(this.player);
     this.handleDiver();
 
+		this.wormpjes = this.game.add.group();
     this.game.time.events.loop(Phaser.Timer.SECOND * 2, this.secondLoop, this);
-
     this.light = this.game.add.sprite(0, 0 - 150, 'light');
 
   }
@@ -45,28 +44,37 @@ export default class Play extends Phaser.State{
     this.game.add.existing(this.background);
 
     this.backStones = this.game.add.group();
+		this.frontStones = this.game.add.group();
+		this.coral = this.game.add.group();
 
-    for(let i = 0; i < 6; i++) {
-      let backStone = new BackgroundStone(this.game, 0, this.game.height, false);
+    for(let i = 0; i < 3; i++) {
+      let backStone = new BackgroundStone(this.game, (i * 1000) + 250, this.game.height, false);
       this.backStones.add(backStone);
-      this.game.add.existing(this.backStones);
+
+			let frontStone = new BackgroundStone(this.game, (i * 1200) - 250, this.game.height, true);
+      this.frontStones.add(frontStone);
     }
+
+		for(let i = 0; i < 20; i++) {
+			let coral = new Coral(this.game, (i * 100), this.game.height, false);
+			this.coral.add(coral);
+		}
+
+		this.game.add.existing(this.backStones);
+		this.game.add.existing(this.frontStones);
+		this.game.add.existing(this.coral);
+
   }
 
   handleBackground() {
-    //this.backStones = this.game.add.group();
 		this.backStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 12,
       () => { this.generateObjects(this.game, ...[this.backStones], 'stones', false); }
       , this);
-		this.game.add.existing(this.backStones);
 
-		this.frontStones = this.game.add.group();
     this.frontStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 9,
       () => { this.generateObjects(this.game, ...[this.frontStones], 'stones', true); }
       , this);
-		this.game.add.existing(this.frontStones);
 
-    this.coral = this.game.add.group();
     this.coralGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 0.5,
       () => { this.generateObjects(this.game, ...[this.coral], 'coral', true); }
       , this);
