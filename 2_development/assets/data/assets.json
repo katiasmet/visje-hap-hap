@@ -143,6 +143,22 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":219,"h":202},
 	"sourceSize": {"w":219,"h":202}
+},
+"starfish_happy.png":
+{
+	"frame": {"x":0,"y":3129,"w":109,"h":108},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":109,"h":108},
+	"sourceSize": {"w":109,"h":108}
+},
+"starfish_sad.png":
+{
+	"frame": {"x":109,"y":3129,"w":109,"h":108},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":109,"h":108},
+	"sourceSize": {"w":109,"h":108}
 }},
 "meta": {
 	"app": "Adobe Animate",
