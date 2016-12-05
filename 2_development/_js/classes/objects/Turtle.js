@@ -69,10 +69,8 @@ export default class Turtle extends Phaser.Sprite {
 			this.destroy();
 		}*/
 
-
-
-		if(this.x < 400){
+		/*if(this.x < 400){
 			this.body.velocity.x = 0;
-		}
+		}*/
 	}
 }

@@ -12,6 +12,8 @@ export default class Fish extends Phaser.Sprite {
 		this.lives = 1;
 		this.type = 1;
 
+    this.scale.setTo(0.7, 0.7);
+
 	}
 	reset(x,y){
 		this.body.velocity.x = -100;
@@ -67,8 +69,8 @@ export default class Fish extends Phaser.Sprite {
 
 
 
-		if(this.x < 400){
+		/*if(this.x < 400){
 			this.body.velocity.x = 0;
-		}
+		}*/
 	}
 }

@@ -12,6 +12,8 @@ export default class Octopus extends Phaser.Sprite {
 		this.lives = 1;
 		this.type = 3;
 
+    this.scale.setTo(0.7, 0.7);
+
 	}
 	reset(x,y){
 		this.body.velocity.x = -100;
@@ -36,7 +38,6 @@ export default class Octopus extends Phaser.Sprite {
 		this.body.velocity.x = -100;
 	}
 
-
 	update(){
 		if (this.alpha < 1) {
 			this.alpha = this.alpha + 0.05;
@@ -48,9 +49,8 @@ export default class Octopus extends Phaser.Sprite {
 		}
 
 
-
-		if(this.x < 400){
+		/*if(this.x < 400){
 			this.body.velocity.x = 0;
-		}
+		}*/
 	}
 }

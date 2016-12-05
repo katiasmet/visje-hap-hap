@@ -1,5 +1,6 @@
 import Background from '../objects/Background';
 import BackgroundStone from '../objects/BackgroundStone';
+import Coral from '../objects/Coral';
 
 import Player from '../objects/Player';
 
@@ -17,32 +18,17 @@ export default class Play extends Phaser.State{
     console.log('play create');
 
     this.initGame();
-
-    this.background = new Background(this.game, 0, 0, this.game.width, this.game.height);
-    this.game.add.existing(this.background);
-
-		this.stones = this.game.add.group();
-		//this.stone = new BackgroundStone(this.game, this.game.width, this.game.height);
-    //this.stones.add(this.stone);
-		this.backStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 4,
-      () => { this.generateObjects(this.game, ...[this.stones], 'stones', false); }
-      , this);
-    this.frontStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 4,
-      () => { this.generateObjects(this.game, ...[this.stones], 'stones', true); }
-      , this);
-    this.game.add.existing(this.stones);
-
-    this.player = new Player(this.game, this.game.width/6, this.game.height/2);
-    this.game.add.existing(this.player);
-    //this.player.anchor.setTo(0.5, 0.5);
-    //this.game.physics.arcade.enable(this.player);
-    //this.player.body.collideWorldBounds = true;
-    this.handleDiver();
+    this.initBackground();
+    this.handleBackground();
 
     this.visjes = this.game.add.group();
     this.wormpjes = this.game.add.group();
 
-    this.game.time.events.loop(Phaser.Timer.SECOND * 1, this.secondLoop, this);
+    this.player = new Player(this.game, this.game.width/6, this.game.height/2);
+    this.game.add.existing(this.player);
+    this.handleDiver();
+
+    this.game.time.events.loop(Phaser.Timer.SECOND * 2, this.secondLoop, this);
 
     this.light = this.game.add.sprite(0, 0 - 150, 'light');
 
@@ -52,6 +38,72 @@ export default class Play extends Phaser.State{
     //settings
     this.speedPlayer = 300;
     this.maxVisjes = 4;
+  }
+
+  initBackground() {
+    this.background = new Background(this.game, 0, 0, this.game.width, this.game.height);
+    this.game.add.existing(this.background);
+
+    this.backStones = this.game.add.group();
+
+    for(let i = 0; i < 6; i++) {
+      let backStone = new BackgroundStone(this.game, 0, this.game.height, false);
+      this.backStones.add(backStone);
+      this.game.add.existing(this.backStones);
+    }
+  }
+
+  handleBackground() {
+    //this.backStones = this.game.add.group();
+		this.backStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 12,
+      () => { this.generateObjects(this.game, ...[this.backStones], 'stones', false); }
+      , this);
+		this.game.add.existing(this.backStones);
+
+		this.frontStones = this.game.add.group();
+    this.frontStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 9,
+      () => { this.generateObjects(this.game, ...[this.frontStones], 'stones', true); }
+      , this);
+		this.game.add.existing(this.frontStones);
+
+    this.coral = this.game.add.group();
+    this.coralGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 0.5,
+      () => { this.generateObjects(this.game, ...[this.coral], 'coral', true); }
+      , this);
+    //this.generateObjects(this.game, ...[this.coral], 'coral', true);
+		this.game.add.existing(this.coral);
+  }
+
+  randomCoral() {
+    console.log('random coral');
+    //this.game.time.events.add(time, this.generateObjects(this.game, ...[this.coral], 'coral', true)).autoDestroy = true;
+  }
+
+  generateObjects(game, objects, objectType, front) {
+
+    let object = objects.getFirstDead();
+    //let coralTimer = 0;
+
+    if(!object) {
+      if(objectType === 'stones') {
+        object = new BackgroundStone(game, 0, game.height, front);
+      } else {
+        object = new Coral(game, game.width, game.height);
+      }
+
+      objects.add(object);
+    }
+
+    object.reset(game.width, game.height);
+    object.randomObject(game);
+
+    game.add.existing(objects);
+
+    /*if(objectType === 'coral') {
+      console.log('its coral');
+      coralTimer = this.game.time.events.add(this.game.rnd.integerInRange(500, 3000), this.randomCoral);
+    }*/
+
   }
 
   handleDiver() {
@@ -95,6 +147,7 @@ export default class Play extends Phaser.State{
 	generatevisjes() {
 		if (this.visjes.children.length < this.maxVisjes) {
 
+      //enhancement: handle randomness in general fish class
 			this.welkeVis = this.game.rnd.integerInRange(1, 3);
 
 			switch (this.welkeVis) {
@@ -106,15 +159,15 @@ export default class Play extends Phaser.State{
 				break;
 
 				case 2:
-				var fishY = this.game.rnd.integerInRange(38, this.game.height-38);
-				var	fish = new Fish(this.game, this.game.width, fishY);
+				let fishY = this.game.rnd.integerInRange(38, this.game.height-38);
+				let	fish = new Fish(this.game, this.game.width, fishY);
 				this.visjes.add(fish,true);
 				fish.reset(this.game.width, fishY);
 				break;
 
 				case 3:
-				var octopusY = this.game.rnd.integerInRange(38, this.game.height-38);
-				var	octopus = new Octopus(this.game, this.game.width, octopusY);
+				let octopusY = this.game.rnd.integerInRange(38, this.game.height-38);
+				let	octopus = new Octopus(this.game, this.game.width, octopusY);
 				this.visjes.add(octopus,true);
 				octopus.reset(this.game.width, octopusY);
 				break;
@@ -124,26 +177,6 @@ export default class Play extends Phaser.State{
 		}
 
   }
-
-	generateObjects(game, objects, objectType, front) {
-
-    let object = objects.getFirstDead();
-
-    if(!object) {
-	    if(objectType === 'stones') {
-	      object = new BackgroundStone(game, 0, game.height, front);
-	    } else {
-	      object = new Coral(game, game.width, game.height - 25);
-	    }
-
-	    objects.add(object);
-	  }
-
-    object.reset(game.width, game.height);
-	  object.randomObject(game);
-	  game.add.existing(objects);
-
-	}
 
   handleWormFishCollision(worm, vis){
 		worm.kill();
@@ -189,8 +222,11 @@ export default class Play extends Phaser.State{
 					});
 				});
 			}
+
+      //this.game.time.events.add(this.game.rnd.integerInRange(500, 3000), this.randomCoral);
 		}
 
-		onLoadComplete(){
+		onLoadComplete() {
+
 		}
 	}
