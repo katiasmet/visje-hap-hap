@@ -59,3 +59,5 @@ export default class BackgroundStone extends Phaser.Sprite {
   }
 
 }
+
+	module.exports = BackgroundStone;

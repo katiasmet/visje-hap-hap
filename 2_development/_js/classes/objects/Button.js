@@ -6,3 +6,5 @@ export default class Button extends Phaser.Sprite {
     this.input.useHandCursor = true;
   }
 }
+
+	module.exports = Button;

@@ -1,7 +1,8 @@
 export default class Preload extends Phaser.State{
+	//console.log('in preload');
 
 	preload(){
-
+		//console.log('in preload');
     this.load.onLoadComplete.addOnce(this.onLoadComplete,this);
 
     //background
@@ -46,7 +47,11 @@ export default class Preload extends Phaser.State{
 	}
 
 	onLoadComplete(){
+
     //this.game.state.start('Intro');
 		this.game.state.start('Play');
+		
 	}
 }
+
+module.exports = Preload;

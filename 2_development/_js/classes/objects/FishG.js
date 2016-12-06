@@ -73,3 +73,5 @@ export default class FishG extends Phaser.Sprite { //general fish class
 		}
 	}
 }
+
+	module.exports = FishG;

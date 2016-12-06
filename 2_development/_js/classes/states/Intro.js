@@ -5,6 +5,8 @@ import Turtle from '../objects/Turtle';
 
 export default class Intro extends Phaser.State {
   create() {
+
+    console.log('in intro');
     this.background = new Background(this.game, 0, 0, this.game.width, this.game.height);
     this.game.add.existing(this.background);
 
@@ -55,3 +57,5 @@ export default class Intro extends Phaser.State {
     console.log('info');
   }
 }
+
+module.exports = Intro;

@@ -43,3 +43,5 @@ export default class Worm2 extends Phaser.Sprite {
 
 	}
 }
+
+	module.exports = Worm2;

@@ -74,3 +74,4 @@ export default class Turtle extends Phaser.Sprite {
 		}*/
 	}
 }
+	module.exports = Turtle;

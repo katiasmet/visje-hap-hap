@@ -41,3 +41,5 @@ export default class Coral extends Phaser.Sprite {
   }
 
 }
+
+	module.exports = Coral;

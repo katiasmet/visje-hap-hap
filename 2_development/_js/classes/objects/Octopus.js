@@ -54,3 +54,4 @@ export default class Octopus extends Phaser.Sprite {
 		}*/
 	}
 }
+	module.exports = Octopus;

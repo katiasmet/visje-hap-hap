@@ -8,3 +8,5 @@ export default class Boot extends Phaser.State{
 		this.game.state.start('Preload');
 	}
 }
+
+module.exports = Boot;

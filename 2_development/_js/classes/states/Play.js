@@ -1,18 +1,31 @@
-import Background from '../objects/Background';
-import BackgroundStone from '../objects/BackgroundStone';
-import Coral from '../objects/Coral';
+const Background = require('../objects/Background')
+const BackgroundStone = require('../objects/BackgroundStone')
+const Coral = require('../objects/Coral')
 
-import Player from '../objects/Player';
+//import Background from '../objects/Background';
+//import BackgroundStone from '../objects/BackgroundStone';
+//import Coral from '../objects/Coral';
+const Player = require('../objects/Player')
+//import Player from '../objects/Player';
 
-import Turtle from '../objects/Turtle';
-import Fish from '../objects/Fish';
-import Octopus from '../objects/Octopus';
+const Turtle = require('../objects/Turtle')
+const Fish = require('../objects/Fish')
+const Octopus = require('../objects/Octopus')
 
-import Worm1 from '../objects/Worm1';
-import Worm2 from '../objects/Worm2';
-import Worm3 from '../objects/Worm3';
+//import Turtle from '../objects/Turtle';
+//import Fish from '../objects/Fish';
+//import Octopus from '../objects/Octopus';
+
+const Worm1 = require('../objects/Worm1')
+const Worm2 = require('../objects/Worm2')
+const Worm3 = require('../objects/Worm3')
+
+//import Worm1 from '../objects/Worm1';
+//import Worm2 from '../objects/Worm2';
+//import Worm3 from '../objects/Worm3';
 
 export default class Play extends Phaser.State{
+
 
 	create(){
     console.log('play create');
@@ -238,3 +251,5 @@ export default class Play extends Phaser.State{
 
 		}
 	}
+
+	module.exports = Play;

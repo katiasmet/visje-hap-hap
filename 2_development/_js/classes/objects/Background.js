@@ -13,3 +13,5 @@ export default class Background extends Phaser.TileSprite {
   }
 
 }
+
+	module.exports = Background;

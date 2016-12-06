@@ -74,3 +74,5 @@ export default class Fish extends Phaser.Sprite {
 		}*/
 	}
 }
+
+	module.exports = Fish;
