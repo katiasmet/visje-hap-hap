@@ -22,7 +22,7 @@ const init = () => {
   game.state.add('Intro', Intro, false);
   game.state.add('Play', Play, false);
 
-  game.state.start('Play');
+  game.state.start('Intro');
 
 };
 
