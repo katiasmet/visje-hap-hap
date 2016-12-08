@@ -1,6 +1,6 @@
 const Background = require('../objects/Background')
 const Button = require('../objects/Button')
-//const Fish = require('../objects/Fish')
+const Fish = require('../objects/Fish')
 //const Turtle = require('../objects/Turtle')
 
 class Intro extends Phaser.State {
@@ -39,13 +39,12 @@ class Intro extends Phaser.State {
     this.stones.add(frontStone2);
     this.game.add.existing(this.stones);
 
-    /*this.fish = new Fish(this.game, this.game.world.centerX - 340, this.game.world.centerY - 60);
-    this.fish.scale.setTo(0.7, 0.7);
+    this.fish = new Fish(this.game, this.game.world.centerX - 420, this.game.world.centerY - 60, 0);
     this.game.add.existing(this.fish);
 
-    this.turtle = new Turtle(this.game, this.game.world.centerX + 260, this.game.world.centerY - 175);
+    this.turtle = new Fish(this.game, this.game.world.centerX + 370, this.game.world.centerY - 175, 2);
     this.turtle.scale.setTo(-1, 1);
-    this.game.add.existing(this.turtle);*/
+    this.game.add.existing(this.turtle);
 
     this.logo = this.game.add.sprite(this.game.world.centerX, 0, 'assets', 'logo.png');
     this.logo.anchor.setTo(0.5, 0.5);

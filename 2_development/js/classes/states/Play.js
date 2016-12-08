@@ -151,7 +151,7 @@ class Play extends Phaser.State{
       } else if(objectType === 'coral') {
         object = new Coral(game, x, y);
       } else {
-        object = new Fish(game, x, y);
+        object = new Fish(game, x, y, false);
       }
 
       objects.add(object);

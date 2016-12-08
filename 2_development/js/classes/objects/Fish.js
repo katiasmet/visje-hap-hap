@@ -1,7 +1,7 @@
 let fishSort;
 
 class Fish extends Phaser.Sprite { //general fish class
-	constructor(game, x, y) {
+	constructor(game, x, y, sort) {
 
     fishSort = [
       'fish',
@@ -9,7 +9,13 @@ class Fish extends Phaser.Sprite { //general fish class
       'turtle'
     ];
 
-    let rndFishSort = game.rnd.integerInRange(0, 2);
+    let rndFishSort;
+    if(sort === 0 || sort === 2) {
+      rndFishSort = sort; //used at intro state
+    } else {
+      rndFishSort = game.rnd.integerInRange(0, 2);
+    }
+
 		super(game, x, y, fishSort[rndFishSort] + '_sad');
 
     this.animations.add('sad');
@@ -24,7 +30,13 @@ class Fish extends Phaser.Sprite { //general fish class
     this.isRunning = false;
     this.lives = 1;
 		this.points = 5;
+
     this.sort = fishSort[rndFishSort]; //to handle in other functions
+    this.specificSort = false;
+    if(sort === 0 || sort === 2) {
+      this.specificSort = true; //used at intro state
+    }
+
 
     this.handleType();
 	}
@@ -98,7 +110,7 @@ class Fish extends Phaser.Sprite { //general fish class
 	}
 
 	update(){
-    if(!this.isRunning) {
+    if(!this.isRunning && !this.specificSort) {
       this.body.velocity.x = -100;
     };
 	}
