@@ -1,6 +1,6 @@
 let coral;
 
-/*export default*/ class Coral extends Phaser.Sprite {
+class Coral extends Phaser.Sprite {
   constructor(game, x, y) {
     coral = [
       'coral_1.png',
@@ -21,14 +21,13 @@ let coral;
     this.body.allowGravity = false;
     this.checkWorldBounds = true;
     this.outOfBoundsKill = true;
-    this.active = true;
 
     this.scale.setTo(0.7, 0.7);
 
   }
 
   update() {
-    if(this.active) {
+    if(this.alive) {
       this.body.velocity.x = -150;
     } else {
       this.body.velocity.x = 0;
@@ -42,4 +41,4 @@ let coral;
 
 }
 
-	module.exports = Coral;
+module.exports = Coral;

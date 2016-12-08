@@ -1,6 +1,6 @@
 let stones;
 
-/*export default*/ class BackgroundStone extends Phaser.Sprite {
+class BackgroundStone extends Phaser.Sprite {
   constructor(game, x, y, front) {
     if(front) {
       stones = [
@@ -28,7 +28,6 @@ let stones;
     this.body.allowGravity = false;
     this.checkWorldBounds = true;
     this.outOfBoundsKill = true;
-    this.active = true;
     this.isFront = front; //parallax front and back stones, get variable in update func
 
     if(front) {
@@ -40,7 +39,7 @@ let stones;
   }
 
   update() {
-    if(this.active) {
+    if(this.alive) {
 
       if(this.isFront) {
         this.body.velocity.x = -125;
@@ -60,4 +59,4 @@ let stones;
 
 }
 
-	module.exports = BackgroundStone;
+module.exports = BackgroundStone;

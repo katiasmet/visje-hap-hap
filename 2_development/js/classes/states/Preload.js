@@ -1,12 +1,11 @@
-//const Play = require('./Play')
+//const Intro = require('./Intro')
+
 /*export default*/ class Preload extends Phaser.State{
-	//console.log('in preload');
 
 	preload(){
 		console.log('in preload-preload');
-		//require('../../../assets/images/background.jpg');
 
-this.load.onLoadComplete.addOnce(this.onLoadComplete,this);
+    this.load.onLoadComplete.addOnce(this.onLoadComplete,this);
     //background
     this.load.image('background', './assets/images/background.jpg');
 		this.load.image('light', './assets/images/light.png');
@@ -36,24 +35,14 @@ this.load.onLoadComplete.addOnce(this.onLoadComplete,this);
     this.load.atlasJSONHash('worm_yellow', './assets/images/worm_yellow.png', './assets/data/worm_yellow.json');
     this.load.atlasJSONHash('worm_green', './assets/images/worm_green.png', './assets/data/worm_green.json');
 
-
-    //worms
-		//this.load.spritesheet('worm1', 'assets/images/worm1.png', 925/8, 125, 8);
-	//	this.load.atlasJSONHash('worm1', 'assets/images/food_small.png', 'assets/data/food_small.json');
-		//this.load.spritesheet('worm2', 'assets/images/worm2.png', 925/8, 125, 8);
-		//this.load.spritesheet('worm3', 'assets/images/worm3.png', 925/8, 125, 8);
-
     //sounds
 
 
 	}
 
 	onLoadComplete(){
-console.log();
-	//console.log(this.game.state.states['Play']);
-    //this.game.state.start('Intro');
-		//this.game.state.add('Play', Play, false);
-		this.game.state.start('Play');
+    this.game.state.start('Intro');
+		//this.game.state.start('Play');
 		console.log('in onLoadComplete-preload');
 
 

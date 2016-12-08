@@ -1,4 +1,4 @@
-/*export default*/ class Player extends Phaser.Sprite {
+class Player extends Phaser.Sprite {
 	constructor(game, x, y, frame) {
 		super(game, x, y, 'player', frame);
 
@@ -20,12 +20,35 @@
 		}
 	}
 
+  feeding(){
+		this.loadTexture('player_feeding', 0);
+    this.animations.add('feeding');
+    this.animations.play('feeding', 20, false);
+
+    this.animations.currentAnim.onComplete.add(() => {
+      this.swimming();
+      }, this);
+	}
+
+  swimming() {
+    this.loadTexture('player', 0);
+    this.animations.play('swimming', 10, true);
+  }
+
 	update(){
 		if (this.alpha < 1) {
 			this.alpha = this.alpha + 0.025;
 		}else{
 			this.alpha = 1;
 		}
+
+    /*if(this.animations.currentFrame.index === 26) {
+      console.log('feed it');
+      this.throwing = true;
+    } else {
+      this.throwing = false;
+    }*/
+
 	}
 }
 

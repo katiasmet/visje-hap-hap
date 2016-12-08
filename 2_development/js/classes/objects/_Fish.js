@@ -1,42 +1,27 @@
-/*export default*/ class FishG extends Phaser.Sprite { //general fish class
-	constructor(game, x, y, fishSort) {
-		super(game, x, y, fishSort + '_sad');
+/*export default*/ class Fish extends Phaser.Sprite {
+	constructor(game, x, y, frame) {
+		super(game, x, y, 'fish_sad', frame);
 
-    this.animations.add('sad');
-		this.animations.play('sad', 10, true);
+    this.animations.add('fish_sad');
+		this.animations.play('fish_sad', 10, true);
 
 		this.anchor.setTo(0.5, 0.5);
 		this.game.physics.arcade.enableBody(this);
 		this.alive = true;
 		this.points = 5;
 		this.lives = 1;
+		this.type = 1;
 
-    this.sort = fishSort; //to handle in other functions
-
-    switch(fishSort) {
-      case fish:
-        this.type = 'yellow';
-        break;
-
-      case octopus:
-        this.type = 'red';
-        break;
-
-      case turtle:
-        this.type = 'turtle';
-        break;
-    }
+    this.scale.setTo(0.7, 0.7);
 
 	}
-
-  reset(x,y){
+	reset(x,y){
 		this.body.velocity.x = -100;
 		this.x = x;
 		this.y = y;
 		this.exists = true;
 		this.hasScored = false;
 	}
-
 	hitwrong(){
 		this.body.velocity.x = -100;
 	}
@@ -47,15 +32,19 @@
 		//this.alpha = 0;
 		this.lives--;
 		if (this.lives == 0) {
-      this.loadTexture(this.sort + '_eating', 0);
-      this.animations.add('eating');
-      this.animations.play('eating', 10, true);
-      this.game.time.events.add(Phaser.Timer.SECOND * 0.5, this.blij, this);
+
+			this.loadTexture('fish_eating', 0);
+
+	 this.animations.add('eating');
+
+	 this.animations.play('eating', 10, true);
+
+	 this.game.time.events.add(Phaser.Timer.SECOND * 0.5, this.blij, this);
 		}
 	}
 
 	blij(){
-		this.loadTexture(this.sort + '_happy', 0);
+		this.loadTexture('fish_happy', 0);
     this.animations.add('happy');
     this.animations.play('happy', 10, true);
     this.game.time.events.add(Phaser.Timer.SECOND * 0.5, this.run, this);
@@ -67,11 +56,23 @@
 		this.game.time.events.add(Phaser.Timer.SECOND * 5, this.destroy, this);
 	}
 
+
 	update(){
 		if (this.alpha < 1) {
 			this.alpha = this.alpha + 0.05;
 		}
+
+		/*if(!this.inWorld) {
+			this.exists = false;
+			this.destroy();
+		}*/
+
+
+
+		/*if(this.x < 400){
+			this.body.velocity.x = 0;
+		}*/
 	}
 }
 
-	module.exports = FishG;
+	module.exports = Fish;
