@@ -19,6 +19,9 @@ class Intro extends Phaser.State {
     this.load.atlasJSONHash('fish_sad', './assets/images/fish_sad.png', './assets/data/fish_sad.json');
     this.load.atlasJSONHash('turtle_sad', './assets/images/turtle_sad.png', './assets/data/turtle_sad.json');
 
+    //sound
+    this.load.audio('backgroundSound', './assets/sound/winterwonder.mp3');
+
   }
   create() {
 
@@ -61,6 +64,10 @@ class Intro extends Phaser.State {
     this.game.add.existing(this.infoButton);
 
     this.light = this.game.add.sprite(0, 0 - 150, 'light');
+
+    this.backgroundSound = this.game.add.audio('backgroundSound');
+    this.backgroundSound.loop = true;
+    this.backgroundSound.play();
   }
 
   startGame() {
