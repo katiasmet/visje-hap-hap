@@ -8,6 +8,9 @@ class Fish extends Phaser.Sprite { //general fish class
       'octopus',
       'turtle'
     ];
+		//this.yammy = this.game.add.audio('yammy');
+		//this.yammy.loop = false;
+
 
     let rndFishSort;
     if(sort === 0 || sort === 2) {
@@ -80,6 +83,7 @@ class Fish extends Phaser.Sprite { //general fish class
 	}*/
 
   eating() {
+	
     this.body.velocity.y = 0;
 		this.body.velocity.x = 0;
     this.lives--;
@@ -116,10 +120,11 @@ class Fish extends Phaser.Sprite { //general fish class
     if(!this.isRunning && !this.specificSort) {
       this.body.velocity.x = -100;
     };
-		if (this.body.position.x < -500) {
+		if(!this.inWorld) {
+			this.exists = false;
 			this.destroy();
-
 		}
+
 	}
 
 

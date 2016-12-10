@@ -1,6 +1,7 @@
 const Background = require('../objects/Background');
 const BackgroundStone = require('../objects/BackgroundStone');
 const Coral = require('../objects/Coral');
+const HappinessBar = require('../objects/HappinessBar')
 
 const Player = require('../objects/Player');
 
@@ -21,6 +22,10 @@ class Play extends Phaser.State{
     //background
     this.load.image('background', './assets/images/background.jpg');
     this.load.image('light', './assets/images/light.png');
+    this.load.image('happyStar', './assets/images/fishstarfish-happy.png');
+    this.load.image('sadStar', './assets/images/fishstarfish-sad.png');
+    this.load.image('darkBar', './assets/images/darkhappinessbar.png');
+    this.load.image('lightBar', './assets/images/lighthappinessbar.png');
 
     //intro
     this.load.atlasJSONHash('assets', './assets/images/assets.png', './assets/data/assets.json');
@@ -61,11 +66,17 @@ class Play extends Phaser.State{
     this.player = new Player(this.game, this.game.width/6, this.game.height/2);
     this.game.add.existing(this.player);
 
+    this.happinessBar = new HappinessBar(this.game, this.game.width, this.game.height );
+    //this.game.add(this.happinessBar);
+
     this.handleWorms();
 		this.worms = this.game.add.group();
     this.game.time.events.loop(Phaser.Timer.SECOND * 2.5, this.generateFish, this);
 
     this.light = this.game.add.sprite(0, 0 - 150, 'light');
+
+    this.yammy = this.game.add.audio('yammy');
+    this.yammy.loop = false;
 
     //buttons
     /*this.board = new five.Board();
@@ -204,6 +215,8 @@ class Play extends Phaser.State{
 		if (fish.type === worm.type) {
       worm.kill();
 			fish.eating();
+      this.yammy.play();
+      this.happinessBar.makeshorter();
 		}
 	}
 
@@ -229,8 +242,6 @@ class Play extends Phaser.State{
 				this.player.body.velocity.y = this.speedPlayer;
 
 			}
-			//console.log(knopUP);
-      console.log(this.fish.length);
 			this.fish.forEach(fish => {
 				this.worms.forEach(worm => {
 					this.game.physics.arcade.collide(worm, fish,
