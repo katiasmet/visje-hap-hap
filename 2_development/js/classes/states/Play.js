@@ -210,7 +210,7 @@ class Play extends Phaser.State{
 	update(){
 
 		if(this.player.body){
-			/*this.player.body.velocity.x = 0;
+			this.player.body.velocity.x = 0;
 			this.player.body.velocity.y = 0;
 
 			if(this.cursors.left.isDown){
@@ -225,12 +225,12 @@ class Play extends Phaser.State{
 				this.player.body.velocity.y = -this.speedPlayer;
 			}
 
-			if(this.cursors.down.isDown || !knopUP) {
+			if(this.cursors.down.isDown) {
 				this.player.body.velocity.y = this.speedPlayer;
 
-			}*/
+			}
 			//console.log(knopUP);
-
+      console.log(this.fish.length);
 			this.fish.forEach(fish => {
 				this.worms.forEach(worm => {
 					this.game.physics.arcade.collide(worm, fish,

@@ -113,7 +113,12 @@ class Fish extends Phaser.Sprite { //general fish class
     if(!this.isRunning && !this.specificSort) {
       this.body.velocity.x = -100;
     };
+		if (this.body.position.x < -100) {
+			this.destroy();
+
+		}
 	}
+
 
   randomObject(game) {
     let rndFishSort = game.rnd.integerInRange(0, 2);
