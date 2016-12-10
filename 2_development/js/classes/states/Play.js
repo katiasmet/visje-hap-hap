@@ -196,7 +196,7 @@ class Play extends Phaser.State{
   }
 
 	generateFish() {
-    let fishY = this.game.rnd.integerInRange(100, this.game.height - 100);
+    let fishY = this.game.rnd.integerInRange(200, this.game.height - 100);
     this.generateObjects(this.game, ...[this.fish], 'fish', this.game.width, fishY, true);
   }
 
