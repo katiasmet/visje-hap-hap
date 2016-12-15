@@ -13,8 +13,15 @@ const five = require("johnny-five");
 
 let board, button;
 let knopUP = false;
+let knopDOWN = false;
+let knopY = false;
+let knopG = false;
+let knopR = false;
+
+let HaFe;
 
 class Play extends Phaser.State{
+
 
   preload(){
   	console.log('play preload');
@@ -51,209 +58,261 @@ class Play extends Phaser.State{
     this.load.atlasJSONHash('worm_yellow', './assets/images/worm_yellow.png', './assets/data/worm_yellow.json');
     this.load.atlasJSONHash('worm_green', './assets/images/worm_green.png', './assets/data/worm_green.json');
 
+}
+
+create(){
+  console.log('play create');
+
+  this.initGame();
+  this.initBackground();
+  this.handleBackground();
+
+  this.fish = this.game.add.group();
+
+  this.player = new Player(this.game, this.game.width/6, this.game.height/2);
+  this.game.add.existing(this.player);
+
+  this.happinessBar = new HappinessBar(this.game, this.game.width, this.game.height );
+  //this.game.add(this.happinessBar);
+
+  this.handleWorms();
+	this.worms = this.game.add.group();
+  this.game.time.events.loop(Phaser.Timer.SECOND * 2.5, this.generateFish, this);
+
+  this.light = this.game.add.sprite(0, 0 - 150, 'light');
+
+  this.yammy = this.game.add.audio('yammy');
+  this.yammy.loop = false;
+
+	HaFe = this.handleFeeding;
+
+  //buttons
+  this.board = new five.Board();
+  //console.log(knopUP);
+
+	this.board.on("ready", function() {
+		this.buttonUP = new five.Button(1);
+    this.buttonDOWN = new five.Button(2);
+    this.buttonY = new five.Button(3);
+    this.buttonG = new five.Button(4);
+    this.buttonR = new five.Button(5);
+
+    //this.board.repl.inject({
+    //  button: button
+    //});
+
+    this.buttonUP.on("down", function() {
+
+  		knopUP = true;
+
+    });
+
+    this.buttonUP.on("up", function() {
+
+  		knopUP = false;
+
+    });
+
+    this.buttonDOWN.on("down", function() {
+
+  		knopDOWN = true;
+
+    });
+
+    this.buttonDOWN.on("up", function() {
+
+  		knopDOWN = false;
+
+    });
+
+    this.buttonY.on("down", function() {
+
+  		knopY = true;
+
+    });
+
+
+    this.buttonG.on("down", function() {
+
+  	knopG = true;
+
+    });
+
+    this.buttonR.on("down", function() {
+
+  	knopR = true;
+
+    });
+
+
+	});
+
+}
+
+initGame() {
+  //settings
+  this.speedPlayer = 300;
+  //this.maxFish = 4; gaat niet als je vissen wil resetten voor object pooling
+}
+
+initBackground() {
+  this.background = new Background(this.game, 0, 0, this.game.width, this.game.height);
+  this.game.add.existing(this.background);
+
+  this.backStones = this.game.add.group();
+	this.frontStones = this.game.add.group();
+	this.coral = this.game.add.group();
+
+  for(let i = 0; i < 3; i++) {
+    let backStone = new BackgroundStone(this.game, (i * 1000) + 250, this.game.height, false);
+    this.backStones.add(backStone);
+
+		let frontStone = new BackgroundStone(this.game, (i * 1200) - 250, this.game.height, true);
+    this.frontStones.add(frontStone);
   }
 
-	create(){
-    console.log('play create');
-
-    this.initGame();
-    this.initBackground();
-    this.handleBackground();
-
-    this.fish = this.game.add.group();
-
-    this.player = new Player(this.game, this.game.width/6, this.game.height/2);
-    this.game.add.existing(this.player);
-
-    this.happinessBar = new HappinessBar(this.game, this.game.width, this.game.height );
-    //this.game.add(this.happinessBar);
-
-    this.handleWorms();
-		this.worms = this.game.add.group();
-    this.game.time.events.loop(Phaser.Timer.SECOND * 2.5, this.generateFish, this);
-
-    this.light = this.game.add.sprite(0, 0 - 150, 'light');
-
-    this.yammy = this.game.add.audio('yammy');
-    this.yammy.loop = false;
-
-    //buttons
-    /*this.board = new five.Board();
-    //console.log(knopUP);
-
-		this.board.on("ready", function() {
-  		this.button = new five.Button(2);
-
-      //this.board.repl.inject({
-      //  button: button
-      //});
-
-      this.button.on("down", function() {
-        console.log("down");
-    		knopUP = true;
-
-      });
-
-      this.button.on("up", function() {
-        console.log("up");
-    		knopUP = false;
-
-      });
-  	});*/
-
-  }
-
-  initGame() {
-    //settings
-    this.speedPlayer = 300;
-    //this.maxFish = 4; gaat niet als je vissen wil resetten voor object pooling
-  }
-
-  initBackground() {
-    this.background = new Background(this.game, 0, 0, this.game.width, this.game.height);
-    this.game.add.existing(this.background);
-
-    this.backStones = this.game.add.group();
-		this.frontStones = this.game.add.group();
-		this.coral = this.game.add.group();
-
-    for(let i = 0; i < 3; i++) {
-      let backStone = new BackgroundStone(this.game, (i * 1000) + 250, this.game.height, false);
-      this.backStones.add(backStone);
-
-			let frontStone = new BackgroundStone(this.game, (i * 1200) - 250, this.game.height, true);
-      this.frontStones.add(frontStone);
-    }
-
-		for(let i = 0; i < 20; i++) {
-			let coral = new Coral(this.game, (i * 100), this.game.height, false);
-			this.coral.add(coral);
-		}
-
-		this.game.add.existing(this.backStones);
-		this.game.add.existing(this.frontStones);
-		this.game.add.existing(this.coral);
-
-  }
-
-  handleBackground() {
-		this.backStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 12,
-      () => { this.generateObjects(this.game, ...[this.backStones], 'stones', this.game.width, this.game.height, false); }
-      , this);
-
-    this.frontStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 9,
-      () => { this.generateObjects(this.game, ...[this.frontStones], 'stones', this.game.width, this.game.height, true); }
-      , this);
-
-    this.coralGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 0.5,
-      () => { this.generateObjects(this.game, ...[this.coral], 'coral', this.game.width, this.game.height, true); }
-      , this);
-		this.game.add.existing(this.coral);
-  }
-
-  generateObjects(game, objects, objectType, x, y, front) {
-
-    let object = objects.getFirstDead();
-
-    if(!object) {
-      if(objectType === 'stones') {
-        object = new BackgroundStone(game, x, y, front);
-      } else if(objectType === 'coral') {
-        object = new Coral(game, x, y);
-      } else {
-        object = new Fish(game, x, y, false);
-      }
-
-      objects.add(object);
-    }
-
-    object.reset(x, y);
-    object.randomObject(game);
-
-    game.add.existing(objects);
-
-  }
-
-  handleWorms() {
-    this.cursors = this.game.input.keyboard.createCursorKeys();
-    this.greenKey = this.game.input.keyboard.addKey(65); //A
-    this.greenKey.onDown.add(() => {this.handleFeeding('green');}, this);
-
-    this.redKey = this.game.input.keyboard.addKey(90); //Z
-    this.redKey.onDown.add(() => {this.handleFeeding('red');}, this);
-
-    this.yellowKey = this.game.input.keyboard.addKey(69); //E
-    this.yellowKey.onDown.add(() => {this.handleFeeding('yellow');}, this);
-  }
-
-  handleFeeding(color) {
-    this.player.feeding();
-    this.game.time.events.add(Phaser.Timer.SECOND * 1.3, () => {this.generateWorm(color);}, this);
-  }
-
-  generateWorm(color) {
-    let worm = this.worms.getFirstDead();
-
-    if(!worm) {
-      worm = new Worm(this.game,
-        this.player.body.x + this.player.body.width/2,
-        this.player.body.y + this.player.body.height - 25,
-        color);
-      this.worms.add(worm);
-    }
-
-    worm.reset(this.player.body.x + this.player.body.width/2, this.player.body.y + this.player.body.height - 25, color);
-  }
-
-	generateFish() {
-    let fishY = this.game.rnd.integerInRange(200, this.game.height - 100);
-    this.generateObjects(this.game, ...[this.fish], 'fish', this.game.width, fishY, true);
-  }
-
-  handleWormFishCollision(worm, fish){
-		if (fish.type === worm.type) {
-      worm.kill();
-			fish.eating();
-      this.yammy.play();
-      this.happinessBar.makeshorter();
-		}
+	for(let i = 0; i < 20; i++) {
+		let coral = new Coral(this.game, (i * 100), this.game.height, false);
+		this.coral.add(coral);
 	}
 
-	update(){
+	this.game.add.existing(this.backStones);
+	this.game.add.existing(this.frontStones);
+	this.game.add.existing(this.coral);
 
-		if(this.player.body){
-			this.player.body.velocity.x = 0;
-			this.player.body.velocity.y = 0;
+}
 
-			if(this.cursors.left.isDown){
-				this.player.body.velocity.x = -this.speedPlayer;
-			}
+handleBackground() {
+	this.backStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 12,
+    () => { this.generateObjects(this.game, ...[this.backStones], 'stones', this.game.width, this.game.height, false); }
+    , this);
 
-			if(this.cursors.right.isDown ){
-				this.player.body.velocity.x = this.speedPlayer;
-			}
+  this.frontStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 9,
+    () => { this.generateObjects(this.game, ...[this.frontStones], 'stones', this.game.width, this.game.height, true); }
+    , this);
 
-			if(this.cursors.up.isDown || knopUP){
-				this.player.body.velocity.y = -this.speedPlayer;
-			}
+  this.coralGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 0.5,
+    () => { this.generateObjects(this.game, ...[this.coral], 'coral', this.game.width, this.game.height, true); }
+    , this);
+	this.game.add.existing(this.coral);
+}
 
-			if(this.cursors.down.isDown) {
-				this.player.body.velocity.y = this.speedPlayer;
+generateObjects(game, objects, objectType, x, y, front) {
 
-			}
-			this.fish.forEach(fish => {
-				this.worms.forEach(worm => {
-					this.game.physics.arcade.collide(worm, fish,
-						this.handleWormFishCollision, null, this);
-					});
+  let object = objects.getFirstDead();
+
+  if(!object) {
+    if(objectType === 'stones') {
+      object = new BackgroundStone(game, x, y, front);
+    } else if(objectType === 'coral') {
+      object = new Coral(game, x, y);
+    } else {
+      object = new Fish(game, x, y, false);
+    }
+
+    objects.add(object);
+  }
+
+  object.reset(x, y);
+  object.randomObject(game);
+
+  game.add.existing(objects);
+
+}
+
+handleWorms() {
+  this.cursors = this.game.input.keyboard.createCursorKeys();
+  this.greenKey = this.game.input.keyboard.addKey(65); //A
+  this.greenKey.onDown.add(() => {this.handleFeeding('green');}, this);
+
+  this.redKey = this.game.input.keyboard.addKey(90); //Z
+  this.redKey.onDown.add(() => {this.handleFeeding('red');}, this);
+
+  this.yellowKey = this.game.input.keyboard.addKey(69); //E
+  this.yellowKey.onDown.add(() => {this.handleFeeding('yellow');}, this);
+}
+
+handleFeeding(color) {
+  this.player.feeding();
+  this.game.time.events.add(Phaser.Timer.SECOND * 1.3, () => {this.generateWorm(color);}, this);
+}
+
+generateWorm(color) {
+  let worm = this.worms.getFirstDead();
+
+  if(!worm) {
+    worm = new Worm(this.game,
+      this.player.body.x + this.player.body.width/2,
+      this.player.body.y + this.player.body.height - 25,
+      color);
+    this.worms.add(worm);
+  }
+
+  worm.reset(this.player.body.x + this.player.body.width/2, this.player.body.y + this.player.body.height - 25, color);
+}
+
+generateFish() {
+  let fishY = this.game.rnd.integerInRange(200, this.game.height - 100);
+  this.generateObjects(this.game, ...[this.fish], 'fish', this.game.width, fishY, true);
+}
+
+handleWormFishCollision(worm, fish){
+	if (fish.type === worm.type) {
+    worm.kill();
+		fish.eating();
+    this.yammy.play();
+    this.happinessBar.makeshorter();
+	}
+}
+
+update(){
+
+	if(this.player.body){
+		this.player.body.velocity.x = 0;
+		this.player.body.velocity.y = 0;
+
+		if(this.cursors.left.isDown){
+			this.player.body.velocity.x = -this.speedPlayer;
+		}
+
+		if(this.cursors.right.isDown ){
+			this.player.body.velocity.x = this.speedPlayer;
+		}
+
+		if(this.cursors.up.isDown || knopUP){
+			this.player.body.velocity.y = -this.speedPlayer;
+		}
+
+		if(this.cursors.down.isDown) {
+			this.player.body.velocity.y = this.speedPlayer;
+
+		}
+		this.fish.forEach(fish => {
+			this.worms.forEach(worm => {
+				this.game.physics.arcade.collide(worm, fish,
+					this.handleWormFishCollision, null, this);
 				});
-			}
+			});
+		}
+		if (knopR) {
+			this.handleFeeding('red');
+			knopR = false;
 
 		}
-
-		onLoadComplete() {
-
+		if (knopY) {
+			this.handleFeeding('yellow');
+			knopY = false;
 		}
+		if (knopG) {
+			this.handleFeeding('green');
+			knopG = false;
+		}
+
 	}
 
-	module.exports = Play;
+	onLoadComplete() {
+
+	}
+}
+
+module.exports = Play;

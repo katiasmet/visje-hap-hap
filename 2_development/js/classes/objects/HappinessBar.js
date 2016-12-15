@@ -27,6 +27,7 @@ class HappinesBar extends Phaser.Sprite {
     console.log(this.lightBar);
 
     this.newWidth = this.lightBar.width+(this.width/15);
+    this.lightBarEnd.position.x = this.lightBar.position.x + this.lightBar.width;
 
     if (this.newWidth > this.darkBar.width) {
       this.newWidth = 0;
