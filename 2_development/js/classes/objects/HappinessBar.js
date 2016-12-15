@@ -24,7 +24,7 @@ class HappinesBar extends Phaser.Sprite {
   }
 
   makeshorter(){
-    console.log(this.lightBar);
+    //console.log(this.lightBar);
 
     this.newWidth = this.lightBar.width+(this.width/15);
     this.lightBarEnd.position.x = this.lightBar.position.x + this.lightBar.width;

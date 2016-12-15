@@ -102,44 +102,45 @@ create(){
     //});
 
     this.buttonUP.on("down", function() {
+			console.log('down is down');
 
   		knopUP = true;
 
     });
 
     this.buttonUP.on("up", function() {
-
+console.log('dwn is up');
   		knopUP = false;
 
     });
 
     this.buttonDOWN.on("down", function() {
-
+console.log('up is down');
   		knopDOWN = true;
 
     });
 
     this.buttonDOWN.on("up", function() {
-
+console.log('up is up');
   		knopDOWN = false;
 
     });
 
     this.buttonY.on("down", function() {
-
+console.log('Y');
   		knopY = true;
 
     });
 
 
     this.buttonG.on("down", function() {
-
+console.log('G');
   	knopG = true;
 
     });
 
     this.buttonR.on("down", function() {
-
+console.log('R');
   	knopR = true;
 
     });
@@ -275,7 +276,7 @@ update(){
 			this.player.body.velocity.x = -this.speedPlayer;
 		}
 
-		if(this.cursors.right.isDown ){
+		if(this.cursors.right.isDown || knopUP ){
 			this.player.body.velocity.x = this.speedPlayer;
 		}
 
