@@ -1,7 +1,6 @@
 const Background = require('../objects/Background')
 const Button = require('../objects/Button')
 const Fish = require('../objects/Fish')
-//const Turtle = require('../objects/Turtle')
 
 class Intro extends Phaser.State {
 
