@@ -7,7 +7,6 @@ class Intro extends Phaser.State {
 
   preload(){
 
-    //this.load.onLoadComplete.addOnce(this.create,this);
     //background
     this.load.image('background', './assets/images/background.jpg');
     this.load.image('light', './assets/images/light.png');
@@ -24,11 +23,10 @@ class Intro extends Phaser.State {
     this.load.audio('yammy', './assets/sound/yammy.mp3');
     this.load.audio('cheer', './assets/sound/cheer.wav');
 
-
   }
+
   create() {
 
-    console.log('in intro');
     this.background = new Background(this.game, 0, 0, this.game.width, this.game.height);
     this.game.add.existing(this.background);
 

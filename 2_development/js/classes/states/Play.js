@@ -21,11 +21,7 @@ let knopR = false;
 let HaFe;
 
 class Play extends Phaser.State{
-
-
   preload(){
-  	console.log('play preload');
-  	//this.load.onLoadComplete.addOnce(this.create,this);
     //background
     this.load.image('background', './assets/images/background.jpg');
     this.load.image('light', './assets/images/light.png');
@@ -61,7 +57,6 @@ class Play extends Phaser.State{
 }
 
 create(){
-  console.log('play create');
 
   this.initGame();
   this.initBackground();
@@ -73,7 +68,7 @@ create(){
   this.game.add.existing(this.player);
 
   this.happinessBar = new HappinessBar(this.game, this.game.width, this.game.height );
-  //this.game.add(this.happinessBar);
+  this.game.add.existing(this.happinessBar);
 
   this.handleWorms();
 	this.worms = this.game.add.group();
