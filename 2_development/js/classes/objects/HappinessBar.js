@@ -24,8 +24,6 @@ class HappinesBar extends Phaser.Sprite {
   }
 
   makeshorter(){
-    //console.log(this.lightBar);
-
     this.newWidth = this.lightBar.width+(this.width/15);
     this.lightBarEnd.position.x = this.lightBar.position.x + this.lightBar.width;
 
@@ -37,8 +35,6 @@ class HappinesBar extends Phaser.Sprite {
     this.game.add.tween(this.lightBar).to( { width: this.newWidth }, 500, "Linear", true);
 
   }
-
-
 }
 
 module.exports = HappinesBar;

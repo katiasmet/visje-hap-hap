@@ -41,14 +41,6 @@ class Player extends Phaser.Sprite {
 		}else{
 			this.alpha = 1;
 		}
-
-    /*if(this.animations.currentFrame.index === 26) {
-      console.log('feed it');
-      this.throwing = true;
-    } else {
-      this.throwing = false;
-    }*/
-
 	}
 }
 
