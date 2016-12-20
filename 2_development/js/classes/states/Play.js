@@ -80,6 +80,11 @@ class Play extends Phaser.State{
     this.yammy = this.game.add.audio('yammy');
     this.yammy.loop = false;
 
+    /*
+      this.story = this.game.add.audio('story');
+      this.story.loop = false;
+    */
+
     HaFe = this.handleFeeding;
 
     //buttons
@@ -135,6 +140,7 @@ class Play extends Phaser.State{
   initGame() {
     //settings
     this.speedPlayer = 300;
+    //this.game.time.events.add(Phaser.Timer.MINUTE * 5, () => {this.story.play}, this);
   }
 
   initBackground() {
@@ -288,7 +294,5 @@ class Play extends Phaser.State{
     }
   }
 }
-
-
 
 module.exports = Play;
