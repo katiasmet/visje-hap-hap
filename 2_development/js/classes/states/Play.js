@@ -230,7 +230,7 @@ handleWorms() {
 
 handleFeeding(color) {
   this.player.feeding();
-  this.game.time.events.add(Phaser.Timer.SECOND * 1.3, () => {this.generateWorm(color);}, this);
+  this.game.time.events.add(Phaser.Timer.SECOND * 0.5, () => {this.generateWorm(color);}, this);
 }
 
 generateWorm(color) {

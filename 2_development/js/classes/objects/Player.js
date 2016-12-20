@@ -23,7 +23,7 @@ class Player extends Phaser.Sprite {
   feeding(){
 		this.loadTexture('player_feeding', 0);
     this.animations.add('feeding');
-    this.animations.play('feeding', 20, false);
+    this.animations.play('feeding', 30, false);
 
     this.animations.currentAnim.onComplete.add(() => {
       this.swimming();
