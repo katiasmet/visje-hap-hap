@@ -1,0 +1,75 @@
+﻿{"frames": {
+
+"diver_electrocution_00060.png":
+{
+	"frame": {"x":0,"y":0,"w":360,"h":285},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
+	"sourceSize": {"w":360,"h":285}
+},
+"diver_electrocution_00061.png":
+{
+	"frame": {"x":0,"y":285,"w":360,"h":285},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
+	"sourceSize": {"w":360,"h":285}
+},
+"diver_electrocution_00062.png":
+{
+	"frame": {"x":0,"y":570,"w":360,"h":285},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
+	"sourceSize": {"w":360,"h":285}
+},
+"diver_electrocution_00063.png":
+{
+	"frame": {"x":0,"y":570,"w":360,"h":285},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
+	"sourceSize": {"w":360,"h":285}
+},
+"diver_electrocution_00064.png":
+{
+	"frame": {"x":0,"y":570,"w":360,"h":285},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
+	"sourceSize": {"w":360,"h":285}
+},
+"diver_electrocution_00065.png":
+{
+	"frame": {"x":0,"y":570,"w":360,"h":285},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
+	"sourceSize": {"w":360,"h":285}
+},
+"diver_electrocution_00066.png":
+{
+	"frame": {"x":0,"y":285,"w":360,"h":285},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
+	"sourceSize": {"w":360,"h":285}
+},
+"diver_electrocution_00067.png":
+{
+	"frame": {"x":0,"y":0,"w":360,"h":285},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
+	"sourceSize": {"w":360,"h":285}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "16.0.0.112",
+	"image": "diver_electrocution.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":1024},
+	"scale": "1"
+}
+}
