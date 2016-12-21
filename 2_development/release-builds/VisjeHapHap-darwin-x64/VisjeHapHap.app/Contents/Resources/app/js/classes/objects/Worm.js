@@ -38,11 +38,6 @@ class Worm extends Phaser.Sprite {
 		this.alpha = 0;
 
     this.destroy();
-
-		//this.lives--;
-    /*if (this.lives == 0) {
-			//this.deathSound.play();
-		}*/
 	}
 
 }
