@@ -7,6 +7,7 @@ const Player = require('../objects/Player');
 
 const Fish = require('../objects/Fish');
 const Worm = require('../objects/Worm');
+const Jellyfish = require('../objects/Jellyfish');
 
 require('../../johnny-five-init');
 const five = require("johnny-five");
@@ -17,8 +18,6 @@ let knopDOWN = false;
 let knopY = false;
 let knopG = false;
 let knopR = false;
-
-let HaFe;
 
 class Play extends Phaser.State{
 
@@ -36,6 +35,7 @@ class Play extends Phaser.State{
     //player
     this.load.atlasJSONHash('player', './assets/images/diver_swimming.png', './assets/data/diver_swimming.json');
     this.load.atlasJSONHash('player_feeding', './assets/images/diver_feeding.png', './assets/data/diver_feeding.json');
+    this.load.atlasJSONHash('player_electrocution', './assets/images/diver_electrocution.png', './assets/data/diver_electrocution.json');
 
     //fish
     this.load.atlasJSONHash('fish_sad', './assets/images/fish_sad.png', './assets/data/fish_sad.json');
@@ -49,6 +49,9 @@ class Play extends Phaser.State{
     this.load.atlasJSONHash('octopus_sad', './assets/images/octopus_sad.png', './assets/data/octopus_sad.json');
     this.load.atlasJSONHash('octopus_eating', './assets/images/octopus_eating.png', './assets/data/octopus_eating.json');
     this.load.atlasJSONHash('octopus_happy', './assets/images/octopus_happy.png', './assets/data/octopus_happy.json');
+
+    //enemy
+    this.load.atlasJSONHash('jellyfish', './assets/images/jellyfish.png', './assets/data/jellyfish.json');
 
     //worms
     this.load.atlasJSONHash('worm_red', './assets/images/worm_red.png', './assets/data/worm_red.json');
@@ -64,32 +67,46 @@ class Play extends Phaser.State{
     this.handleBackground();
 
     this.fish = this.game.add.group();
+    this.game.time.events.loop(Phaser.Timer.SECOND * 2.5, this.generateFish, this);
 
     this.player = new Player(this.game, this.game.width/6, this.game.height/2);
     this.game.add.existing(this.player);
 
+    this.worms = this.game.add.group();
+    this.handleWorms();
+
+    this.jellyfish = this.game.add.group();
+    this.game.time.events.loop(Phaser.Timer.SECOND * 10, this.generateJellyfish, this);
+
     this.happinessBar = new HappinessBar(this.game, this.game.width, this.game.height );
     this.game.add.existing(this.happinessBar);
-
-    this.handleWorms();
-    this.worms = this.game.add.group();
-    this.game.time.events.loop(Phaser.Timer.SECOND * 2.5, this.generateFish, this);
 
     this.light = this.game.add.sprite(0, 0 - 150, 'light');
 
     this.yammy = this.game.add.audio('yammy');
     this.yammy.loop = false;
 
-    /*
-      this.story = this.game.add.audio('story');
-      this.story.loop = false;
-    */
+    this.aww = this.game.add.audio('aww');
+    this.aww.loop = false;
 
-    HaFe = this.handleFeeding;
+    this.story = this.game.add.audio('infoText');
+    this.story.loop = false;
+    this.game.time.events.add(Phaser.Timer.MINUTE * 5, () => {this.story.play()}, this);
+
 
     //buttons
+    this.initButtons();
+
+  }
+
+  initGame() {
+    //settings
+    this.speedPlayer = 300;
+    this.timeDelay = 0;
+  }
+
+  initButtons() {
     this.board = new five.Board();
-    //console.log(knopUP);
 
     this.board.on("ready", function() {
       this.buttonUP = new five.Button(9);
@@ -134,13 +151,6 @@ class Play extends Phaser.State{
       });
 
     });
-
-  }
-
-  initGame() {
-    //settings
-    this.speedPlayer = 300;
-    //this.game.time.events.add(Phaser.Timer.MINUTE * 5, () => {this.story.play}, this);
   }
 
   initBackground() {
@@ -180,119 +190,145 @@ class Play extends Phaser.State{
       () => { this.generateObjects(this.game, ...[this.backStones], 'stones', this.game.width, this.game.height, false); }
       , this);
 
-    this.frontStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 9,
-      () => { this.generateObjects(this.game, ...[this.frontStones], 'stones', this.game.width, this.game.height, true); }
-      , this);
+      this.frontStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 9,
+        () => { this.generateObjects(this.game, ...[this.frontStones], 'stones', this.game.width, this.game.height, true); }
+        , this);
 
-    this.coralGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 0.5,
-      () => { this.generateObjects(this.game, ...[this.coral], 'coral', this.game.width, this.game.height, true); }
-      , this);
-  }
+        this.coralGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 0.5,
+          () => { this.generateObjects(this.game, ...[this.coral], 'coral', this.game.width, this.game.height, true); }
+          , this);
+        }
 
-  generateObjects(game, objects, objectType, x, y, front) {
+        generateObjects(game, objects, objectType, x, y, front) {
 
-    let object = objects.getFirstDead();
+          let object = objects.getFirstDead();
 
-    if(!object) {
-      if(objectType === 'stones') {
-        object = new BackgroundStone(game, x, y, front);
-      } else if(objectType === 'coral') {
-        object = new Coral(game, x, y);
-      } else {
-        object = new Fish(game, x, y, false);
-      }
+          if(!object) {
+            if(objectType === 'stones') {
+              object = new BackgroundStone(game, x, y, front);
+            } else if(objectType === 'coral') {
+              object = new Coral(game, x, y);
+            } else if(objectType === 'jellyfish') {
+              object = new Jellyfish(game, x, y);
+            } else {
+              object = new Fish(game, x, y, false);
+            }
 
-      objects.add(object);
-    }
+            objects.add(object);
+          }
 
-    object.reset(x, y);
-    object.randomObject(game);
+          object.reset(x, y);
 
-    game.add.existing(objects);
+          if(objectType !== 'jellyfish') {
+            object.randomObject(game);
+          }
 
-  }
+          game.add.existing(objects);
 
-  handleWorms() {
-    this.cursors = this.game.input.keyboard.createCursorKeys();
-    this.greenKey = this.game.input.keyboard.addKey(65); //A
-    this.greenKey.onDown.add(() => {this.handleFeeding('green');}, this);
+        }
 
-    this.redKey = this.game.input.keyboard.addKey(90); //Z
-    this.redKey.onDown.add(() => {this.handleFeeding('red');}, this);
+        handleWorms() {
+          this.cursors = this.game.input.keyboard.createCursorKeys();
+          this.greenKey = this.game.input.keyboard.addKey(65); //A
+          this.greenKey.onDown.add(() => {this.handleFeeding('green');}, this);
 
-    this.yellowKey = this.game.input.keyboard.addKey(69); //E
-    this.yellowKey.onDown.add(() => {this.handleFeeding('yellow');}, this);
-  }
+          this.redKey = this.game.input.keyboard.addKey(90); //Z
+          this.redKey.onDown.add(() => {this.handleFeeding('red');}, this);
 
-  handleFeeding(color) {
-    this.player.feeding();
-    this.game.time.events.add(Phaser.Timer.SECOND * 0.5, () => {this.generateWorm(color);}, this);
-  }
+          this.yellowKey = this.game.input.keyboard.addKey(69); //E
+          this.yellowKey.onDown.add(() => {this.handleFeeding('yellow');}, this);
+        }
 
-  generateWorm(color) {
-    let worm = this.worms.getFirstDead();
+        handleFeeding(color) {
+          this.player.feeding();
+          this.game.time.events.add(Phaser.Timer.SECOND * 0.5, () => {this.generateWorm(color);}, this);
+        }
 
-    if(!worm) {
-      worm = new Worm(this.game,
-        this.player.body.x + this.player.body.width/2,
-        this.player.body.y + this.player.body.height - 25,
-        color);
-        this.worms.add(worm);
-    }
+        generateWorm(color) {
+          let worm = this.worms.getFirstDead();
 
-    worm.reset(this.player.body.x + this.player.body.width/2, this.player.body.y + this.player.body.height - 25, color);
-  }
+          if(!worm) {
+            worm = new Worm(this.game,
+              this.player.body.x + this.player.body.width/2,
+              this.player.body.y + this.player.body.height - 25,
+              color);
+              this.worms.add(worm);
+            }
 
-  generateFish() {
-    let fishY = this.game.rnd.integerInRange(200, this.game.height - 100);
-    this.generateObjects(this.game, ...[this.fish], 'fish', this.game.width, fishY, true);
-  }
+            worm.reset(this.player.body.x + this.player.body.width/2, this.player.body.y + this.player.body.height - 25, color);
+          }
 
-  handleWormFishCollision(worm, fish){
-    if (fish.type === worm.type) {
-      worm.kill();
-      fish.eating();
-      this.yammy.play();
-      this.happinessBar.makeshorter();
-    }
-  }
+          generateFish() {
+            const fishY = this.game.rnd.integerInRange(200, this.game.height - 100);
+            this.generateObjects(this.game, ...[this.fish], 'fish', this.game.width, fishY, true);
+          }
 
-  update(){
+          generateJellyfish() {
+            const jellyfishX = this.game.rnd.integerInRange(200, this.game.width - 200);
+            this.generateObjects(this.game, ...[this.jellyfish], 'jellyfish', jellyfishX, this.game.height, true);
+          }
 
-  if(this.player.body){
-    this.player.body.velocity.x = 0;
-    this.player.body.velocity.y = 0;
+          handleWormFishCollision(worm, fish){
+            if (fish.type === worm.type) {
+              if (fish.eating()) {
+                worm.kill();
+                //fish.eating();
+                this.yammy.play();
+                this.happinessBar.makeshorter();
+              }
 
-    if(this.cursors.up.isDown || knopUP){
-      this.player.body.velocity.y = -this.speedPlayer;
-    }
+            }
+          }
 
-    if(this.cursors.down.isDown || knopDOWN) {
-      this.player.body.velocity.y = this.speedPlayer;
-    }
+          handleDiverJellyfishCollision() {
+            if (this.game.time.now > this.timeDelay){
+              this.player.electrocuting();
+              this.aww.play();
+              this.timeDelay = this.game.time.now + 5000;
+            }
+          }
 
-    if (knopR) {
-      this.handleFeeding('red');
-      knopR = false;
+          update(){
 
-    }
-    if (knopY) {
-      this.handleFeeding('yellow');
-      knopY = false;
-    }
-    if (knopG) {
-      this.handleFeeding('green');
-      knopG = false;
-    }
+            if(this.player.body){
+              this.player.body.velocity.x = 0;
+              this.player.body.velocity.y = 0;
 
-    this.fish.forEach(fish => {
-      this.worms.forEach(worm => {
-        this.game.physics.arcade.collide(worm, fish,
-          this.handleWormFishCollision, null, this);
-        });
-      });
-    }
-  }
-}
+              if(this.cursors.up.isDown || knopUP){
+                this.player.body.velocity.y = -this.speedPlayer;
+              }
 
-module.exports = Play;
+              if(this.cursors.down.isDown || knopDOWN) {
+                this.player.body.velocity.y = this.speedPlayer;
+              }
+
+              if (knopR) {
+                this.handleFeeding('red');
+                knopR = false;
+
+              }
+              if (knopY) {
+                this.handleFeeding('yellow');
+                knopY = false;
+              }
+              if (knopG) {
+                this.handleFeeding('green');
+                knopG = false;
+              }
+
+              this.fish.forEach(fish => {
+                this.worms.forEach(worm => {
+                  this.game.physics.arcade.collide(worm, fish,
+                    this.handleWormFishCollision, null, this);
+                  });
+                });
+              }
+
+              this.jellyfish.forEach(jellyfish => {
+                this.game.physics.arcade.overlap(this.player, jellyfish,
+                  this.handleDiverJellyfishCollision, null, this);
+                });
+              }
+            }
+
+            module.exports = Play;

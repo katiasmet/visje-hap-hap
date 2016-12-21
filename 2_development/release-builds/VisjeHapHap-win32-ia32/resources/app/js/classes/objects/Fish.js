@@ -20,6 +20,7 @@ class Fish extends Phaser.Sprite {
 
     this.animations.add('sad');
 		this.animations.play('sad', 10, true);
+		this.honger = true;
 
 		this.anchor.setTo(0, 0.5);
 		this.game.physics.arcade.enableBody(this);
@@ -80,31 +81,46 @@ class Fish extends Phaser.Sprite {
 	}*/
 
   eating() {
+		if (this.honger) {
+			this.honger = false;
+			//this.body.velocity.y = 0;
+			//this.body.velocity.x = 0;
 
-    this.body.velocity.y = 0;
-		this.body.velocity.x = 0;
-    this.lives--;
+			this.game.add.tween(this.body.velocity).to( { x: 0 }, 100, "Linear", true);
+			this.lives--;
 
-    if(this.lives === 0) {
-      this.loadTexture(this.sort + '_eating', 0);
-      this.animations.add('eating');
-      this.animations.play('eating', 10, false);
+			if(this.lives === 0) {
+				console.log('etend');
+				this.loadTexture(this.sort + '_eating', 0);
+				this.animations.add('eating');
+				this.animations.play('eating', 10, false);
 
-      this.animations.currentAnim.onComplete.add(() => {
-        this.happy();
-      }, this);
-    }
+				this.animations.currentAnim.onComplete.addOnce(() => {
+					this.animations.stop('eating');
+					this.happy();
+				}, this);
+			}
+			return true;
+		}else {
+			return false;
+		}
+
   }
 
 	happy(){
 		this.loadTexture(this.sort + '_happy', 0);
     this.animations.add('happy');
-    this.animations.play('happy', 10, true);
+    this.animations.play('happy', 10, false);
 
-    this.game.time.events.add(Phaser.Timer.SECOND * 0.3, this.run, this);
+		this.animations.currentAnim.onComplete.add(() => {
+			this.run();
+		}, this);
+
+    //this.game.time.events.add(Phaser.Timer.SECOND * 0.3, this.run, this);
 	}
 
 	run(){
+		this.animations.play('happy', 10 , false);
     this.isRunning = true;
 		this.scale.x = -this.scale.x;
 		this.position.x = this.position.x + this.body.width;
@@ -115,7 +131,10 @@ class Fish extends Phaser.Sprite {
 
 	update(){
     if(!this.isRunning && !this.specificSort) {
-      this.body.velocity.x = -100;
+			if (this.honger) {
+				  this.body.velocity.x = -100;
+			}
+
     };
 		if(!this.inWorld) {
 			this.exists = false;
