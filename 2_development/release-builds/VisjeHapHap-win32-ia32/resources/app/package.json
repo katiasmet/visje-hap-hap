@@ -1,0 +1,21 @@
+{
+  "name": "VisjeHapHap",
+  "description": "Visje Hap Hap is een interactief en educatief spel voor kleuters van 3 tot 6 jaar.",
+  "version": "0.1.2",
+  "author": "Arne Deprez & Katia Smet",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ./main.js",
+    "install": "electron-rebuild",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . --overwrite --platform=win32 --arch=ia32 --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Visje Hap Hap\""
+  },
+  "dependencies": {
+    "electron": "^1.4.5",
+    "electron-packager": "^8.3.0",
+    "johnny-five": "^0.10.5"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.3.0"
+  }
+}
