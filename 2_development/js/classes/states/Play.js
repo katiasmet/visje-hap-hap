@@ -94,8 +94,6 @@ class Play extends Phaser.State{
     this.game.time.events.add(Phaser.Timer.MINUTE * 5, () => {this.story.play()}, this);
 
 
-    //HaFe = this.handleFeeding;
-
     //buttons
     this.initButtons();
 
