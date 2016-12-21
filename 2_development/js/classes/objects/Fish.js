@@ -20,6 +20,7 @@ class Fish extends Phaser.Sprite {
 
     this.animations.add('sad');
 		this.animations.play('sad', 10, true);
+		this.honger = true;
 
 		this.anchor.setTo(0, 0.5);
 		this.game.physics.arcade.enableBody(this);
@@ -80,20 +81,28 @@ class Fish extends Phaser.Sprite {
 	}*/
 
   eating() {
+		if (this.honger) {
+			this.honger = false;
+			//this.body.velocity.y = 0;
+			//this.body.velocity.x = 0;
 
-    this.body.velocity.y = 0;
-		this.body.velocity.x = 0;
-    this.lives--;
+			this.game.add.tween(this.body.velocity).to( { x: 0 }, 100, "Linear", true);
+			this.lives--;
 
-    if(this.lives === 0) {
-      this.loadTexture(this.sort + '_eating', 0);
-      this.animations.add('eating');
-      this.animations.play('eating', 10, false);
+			if(this.lives === 0) {
+				this.loadTexture(this.sort + '_eating', 0);
+				this.animations.add('eating');
+				this.animations.play('eating', 10, false);
 
-      this.animations.currentAnim.onComplete.add(() => {
-        this.happy();
-      }, this);
-    }
+				this.animations.currentAnim.onComplete.add(() => {
+					this.happy();
+				}, this);
+			}
+			return true;
+		}else {
+			return false;
+		}
+
   }
 
 	happy(){
@@ -115,7 +124,10 @@ class Fish extends Phaser.Sprite {
 
 	update(){
     if(!this.isRunning && !this.specificSort) {
-      this.body.velocity.x = -100;
+			if (this.honger) {
+				  this.body.velocity.x = -100;
+			}
+
     };
 		if(!this.inWorld) {
 			this.exists = false;

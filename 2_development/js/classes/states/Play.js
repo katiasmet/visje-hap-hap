@@ -263,17 +263,20 @@ class Play extends Phaser.State{
     this.generateObjects(this.game, ...[this.fish], 'fish', this.game.width, fishY, true);
   }
 
-  generateJellyfish() {gi
+  generateJellyfish() {
     const jellyfishX = this.game.rnd.integerInRange(200, this.game.width - 200);
     this.generateObjects(this.game, ...[this.jellyfish], 'jellyfish', jellyfishX, this.game.height, true);
   }
 
   handleWormFishCollision(worm, fish){
     if (fish.type === worm.type) {
-      worm.kill();
-      fish.eating();
-      this.yammy.play();
-      this.happinessBar.makeshorter();
+      if (fish.eating()) {
+        worm.kill();
+        //fish.eating();
+        this.yammy.play();
+        this.happinessBar.makeshorter();
+      }
+
     }
   }
 
