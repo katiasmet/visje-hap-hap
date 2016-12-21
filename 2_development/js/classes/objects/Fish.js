@@ -90,11 +90,13 @@ class Fish extends Phaser.Sprite {
 			this.lives--;
 
 			if(this.lives === 0) {
+				console.log('etend');
 				this.loadTexture(this.sort + '_eating', 0);
 				this.animations.add('eating');
 				this.animations.play('eating', 10, false);
 
-				this.animations.currentAnim.onComplete.add(() => {
+				this.animations.currentAnim.onComplete.addOnce(() => {
+					this.animations.stop('eating');
 					this.happy();
 				}, this);
 			}
@@ -108,12 +110,17 @@ class Fish extends Phaser.Sprite {
 	happy(){
 		this.loadTexture(this.sort + '_happy', 0);
     this.animations.add('happy');
-    this.animations.play('happy', 10, true);
+    this.animations.play('happy', 10, false);
 
-    this.game.time.events.add(Phaser.Timer.SECOND * 0.3, this.run, this);
+		this.animations.currentAnim.onComplete.add(() => {
+			this.run();
+		}, this);
+
+    //this.game.time.events.add(Phaser.Timer.SECOND * 0.3, this.run, this);
 	}
 
 	run(){
+		this.animations.play('happy', 10 , false);
     this.isRunning = true;
 		this.scale.x = -this.scale.x;
 		this.position.x = this.position.x + this.body.width;
