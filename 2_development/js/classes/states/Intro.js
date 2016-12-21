@@ -21,6 +21,8 @@ class Intro extends Phaser.State {
     this.load.audio('backgroundSound', './assets/sound/winterwonder.mp3');
     this.load.audio('yammy', './assets/sound/yammy.mp3');
     this.load.audio('cheer', './assets/sound/cheer.wav');
+    this.load.audio('aww', './assets/sound/AWW.mp3');
+    this.load.audio('infoText', './assets/sound/infoText2.mp3');
 
   }
 
