@@ -7,6 +7,7 @@ const Player = require('../objects/Player');
 
 const Fish = require('../objects/Fish');
 const Worm = require('../objects/Worm');
+const Jellyfish = require('../objects/Jellyfish');
 
 require('../../johnny-five-init');
 const five = require("johnny-five");
@@ -17,8 +18,6 @@ let knopDOWN = false;
 let knopY = false;
 let knopG = false;
 let knopR = false;
-
-let HaFe;
 
 class Play extends Phaser.State{
 
@@ -36,6 +35,7 @@ class Play extends Phaser.State{
     //player
     this.load.atlasJSONHash('player', './assets/images/diver_swimming.png', './assets/data/diver_swimming.json');
     this.load.atlasJSONHash('player_feeding', './assets/images/diver_feeding.png', './assets/data/diver_feeding.json');
+    this.load.atlasJSONHash('player_electrocution', './assets/images/diver_electrocution.png', './assets/data/diver_electrocution.json');
 
     //fish
     this.load.atlasJSONHash('fish_sad', './assets/images/fish_sad.png', './assets/data/fish_sad.json');
@@ -49,6 +49,9 @@ class Play extends Phaser.State{
     this.load.atlasJSONHash('octopus_sad', './assets/images/octopus_sad.png', './assets/data/octopus_sad.json');
     this.load.atlasJSONHash('octopus_eating', './assets/images/octopus_eating.png', './assets/data/octopus_eating.json');
     this.load.atlasJSONHash('octopus_happy', './assets/images/octopus_happy.png', './assets/data/octopus_happy.json');
+
+    //enemy
+    this.load.atlasJSONHash('jellyfish', './assets/images/jellyfish.png', './assets/data/jellyfish.json');
 
     //worms
     this.load.atlasJSONHash('worm_red', './assets/images/worm_red.png', './assets/data/worm_red.json');
@@ -64,16 +67,19 @@ class Play extends Phaser.State{
     this.handleBackground();
 
     this.fish = this.game.add.group();
+    this.game.time.events.loop(Phaser.Timer.SECOND * 2.5, this.generateFish, this);
 
     this.player = new Player(this.game, this.game.width/6, this.game.height/2);
     this.game.add.existing(this.player);
 
+    this.worms = this.game.add.group();
+    this.handleWorms();
+
+    this.jellyfish = this.game.add.group();
+    this.game.time.events.loop(Phaser.Timer.SECOND * 10, this.generateJellyfish, this);
+
     this.happinessBar = new HappinessBar(this.game, this.game.width, this.game.height );
     this.game.add.existing(this.happinessBar);
-
-    this.handleWorms();
-    this.worms = this.game.add.group();
-    this.game.time.events.loop(Phaser.Timer.SECOND * 2.5, this.generateFish, this);
 
     this.light = this.game.add.sprite(0, 0 - 150, 'light');
 
@@ -83,13 +89,24 @@ class Play extends Phaser.State{
     /*
       this.story = this.game.add.audio('story');
       this.story.loop = false;
+      //this.game.time.events.add(Phaser.Timer.MINUTE * 5, () => {this.story.play}, this);
     */
 
-    HaFe = this.handleFeeding;
+    //HaFe = this.handleFeeding;
 
     //buttons
+    this.initButtons();
+
+  }
+
+  initGame() {
+    //settings
+    this.speedPlayer = 300;
+    this.timeDelay = 0;
+  }
+
+  initButtons() {
     this.board = new five.Board();
-    //console.log(knopUP);
 
     this.board.on("ready", function() {
       this.buttonUP = new five.Button(9);
@@ -134,13 +151,6 @@ class Play extends Phaser.State{
       });
 
     });
-
-  }
-
-  initGame() {
-    //settings
-    this.speedPlayer = 300;
-    //this.game.time.events.add(Phaser.Timer.MINUTE * 5, () => {this.story.play}, this);
   }
 
   initBackground() {
@@ -198,6 +208,8 @@ class Play extends Phaser.State{
         object = new BackgroundStone(game, x, y, front);
       } else if(objectType === 'coral') {
         object = new Coral(game, x, y);
+      } else if(objectType === 'jellyfish') {
+        object = new Jellyfish(game, x, y);
       } else {
         object = new Fish(game, x, y, false);
       }
@@ -206,7 +218,10 @@ class Play extends Phaser.State{
     }
 
     object.reset(x, y);
-    object.randomObject(game);
+
+    if(objectType !== 'jellyfish') {
+      object.randomObject(game);
+    }
 
     game.add.existing(objects);
 
@@ -244,8 +259,13 @@ class Play extends Phaser.State{
   }
 
   generateFish() {
-    let fishY = this.game.rnd.integerInRange(200, this.game.height - 100);
+    const fishY = this.game.rnd.integerInRange(200, this.game.height - 100);
     this.generateObjects(this.game, ...[this.fish], 'fish', this.game.width, fishY, true);
+  }
+
+  generateJellyfish() {gi
+    const jellyfishX = this.game.rnd.integerInRange(200, this.game.width - 200);
+    this.generateObjects(this.game, ...[this.jellyfish], 'jellyfish', jellyfishX, this.game.height, true);
   }
 
   handleWormFishCollision(worm, fish){
@@ -254,6 +274,13 @@ class Play extends Phaser.State{
       fish.eating();
       this.yammy.play();
       this.happinessBar.makeshorter();
+    }
+  }
+
+  handleDiverJellyfishCollision() {
+    if (this.game.time.now > this.timeDelay){
+      this.player.electrocuting();
+      this.timeDelay = this.game.time.now + 5000;
     }
   }
 
@@ -292,6 +319,11 @@ class Play extends Phaser.State{
         });
       });
     }
+
+    this.jellyfish.forEach(jellyfish => {
+      this.game.physics.arcade.overlap(this.player, jellyfish,
+        this.handleDiverJellyfishCollision, null, this);
+    });
   }
 }
 

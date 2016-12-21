@@ -10,7 +10,7 @@
 },
 "diver_electrocution_00061.png":
 {
-	"frame": {"x":0,"y":285,"w":360,"h":285},
+	"frame": {"x":360,"y":0,"w":360,"h":285},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
@@ -18,7 +18,7 @@
 },
 "diver_electrocution_00062.png":
 {
-	"frame": {"x":0,"y":570,"w":360,"h":285},
+	"frame": {"x":0,"y":285,"w":360,"h":285},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
@@ -26,7 +26,7 @@
 },
 "diver_electrocution_00063.png":
 {
-	"frame": {"x":0,"y":570,"w":360,"h":285},
+	"frame": {"x":360,"y":285,"w":360,"h":285},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
@@ -42,7 +42,7 @@
 },
 "diver_electrocution_00065.png":
 {
-	"frame": {"x":0,"y":570,"w":360,"h":285},
+	"frame": {"x":360,"y":570,"w":360,"h":285},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
@@ -50,7 +50,7 @@
 },
 "diver_electrocution_00066.png":
 {
-	"frame": {"x":0,"y":285,"w":360,"h":285},
+	"frame": {"x":0,"y":855,"w":360,"h":285},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
@@ -58,7 +58,7 @@
 },
 "diver_electrocution_00067.png":
 {
-	"frame": {"x":0,"y":0,"w":360,"h":285},
+	"frame": {"x":360,"y":855,"w":360,"h":285},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
@@ -69,7 +69,7 @@
 	"version": "16.0.0.112",
 	"image": "diver_electrocution.png",
 	"format": "RGBA8888",
-	"size": {"w":512,"h":1024},
+	"size": {"w":1024,"h":2048},
 	"scale": "1"
 }
 }

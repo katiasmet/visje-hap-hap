@@ -2,7 +2,7 @@
   "name": "VisjeHapHap",
   "description": "Visje Hap Hap is een interactief en educatief spel voor kleuters van 3 tot 6 jaar.",
   "version": "0.1.2",
-  "author": "Arne Deprez & Katia Smet",
+  "author": "Katia Smet",
   "main": "main.js",
   "scripts": {
     "start": "electron ./main.js",

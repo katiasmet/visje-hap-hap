@@ -215,54 +215,6 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
 	"sourceSize": {"w":360,"h":285}
-},
-"diver_feeding_00054.png":
-{
-	"frame": {"x":720,"y":1425,"w":360,"h":285},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
-	"sourceSize": {"w":360,"h":285}
-},
-"diver_feeding_00055.png":
-{
-	"frame": {"x":1080,"y":1425,"w":360,"h":285},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
-	"sourceSize": {"w":360,"h":285}
-},
-"diver_feeding_00056.png":
-{
-	"frame": {"x":1440,"y":1425,"w":360,"h":285},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
-	"sourceSize": {"w":360,"h":285}
-},
-"diver_feeding_00057.png":
-{
-	"frame": {"x":0,"y":1710,"w":360,"h":285},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
-	"sourceSize": {"w":360,"h":285}
-},
-"diver_feeding_00058.png":
-{
-	"frame": {"x":360,"y":1710,"w":360,"h":285},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
-	"sourceSize": {"w":360,"h":285}
-},
-"diver_feeding_00059.png":
-{
-	"frame": {"x":720,"y":1710,"w":360,"h":285},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":285},
-	"sourceSize": {"w":360,"h":285}
 }},
 "meta": {
 	"app": "Adobe Animate",

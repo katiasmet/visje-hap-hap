@@ -13,12 +13,16 @@ const five = require("johnny-five");
 
 let board, button;
 let knopUP = false;
+let knopDOWN = false;
+let knopY = false;
+let knopG = false;
+let knopR = false;
+
+let HaFe;
 
 class Play extends Phaser.State{
 
   preload(){
-  	console.log('play preload');
-  	//this.load.onLoadComplete.addOnce(this.create,this);
     //background
     this.load.image('background', './assets/images/background.jpg');
     this.load.image('light', './assets/images/light.png');
@@ -53,8 +57,7 @@ class Play extends Phaser.State{
 
   }
 
-	create(){
-    console.log('play create');
+  create(){
 
     this.initGame();
     this.initBackground();
@@ -66,10 +69,10 @@ class Play extends Phaser.State{
     this.game.add.existing(this.player);
 
     this.happinessBar = new HappinessBar(this.game, this.game.width, this.game.height );
-    //this.game.add(this.happinessBar);
+    this.game.add.existing(this.happinessBar);
 
     this.handleWorms();
-		this.worms = this.game.add.group();
+    this.worms = this.game.add.group();
     this.game.time.events.loop(Phaser.Timer.SECOND * 2.5, this.generateFish, this);
 
     this.light = this.game.add.sprite(0, 0 - 150, 'light');
@@ -77,36 +80,67 @@ class Play extends Phaser.State{
     this.yammy = this.game.add.audio('yammy');
     this.yammy.loop = false;
 
+    /*
+      this.story = this.game.add.audio('story');
+      this.story.loop = false;
+    */
+
+    HaFe = this.handleFeeding;
+
     //buttons
-    /*this.board = new five.Board();
+    this.board = new five.Board();
     //console.log(knopUP);
 
-		this.board.on("ready", function() {
-  		this.button = new five.Button(2);
+    this.board.on("ready", function() {
+      this.buttonUP = new five.Button(9);
+      this.buttonDOWN = new five.Button(6);
+      this.buttonY = new five.Button(4);
+      this.buttonG = new five.Button(2);
+      this.buttonR = new five.Button(3);
 
-      //this.board.repl.inject({
-      //  button: button
-      //});
-
-      this.button.on("down", function() {
-        console.log("down");
-    		knopUP = true;
-
+      this.buttonUP.on("down", function() {
+        console.log('up is down');
+        knopUP = true;
       });
 
-      this.button.on("up", function() {
-        console.log("up");
-    		knopUP = false;
-
+      this.buttonUP.on("up", function() {
+        console.log('up is up');
+        knopUP = false;
       });
-  	});*/
+
+      this.buttonDOWN.on("down", function() {
+        console.log('down is down');
+        knopDOWN = true;
+      });
+
+      this.buttonDOWN.on("up", function() {
+        console.log('down is up');
+        knopDOWN = false;
+      });
+
+      this.buttonY.on("down", function() {
+        console.log('Y');
+        knopY = true;
+      });
+
+      this.buttonG.on("down", function() {
+        console.log('G');
+        knopG = true;
+      });
+
+      this.buttonR.on("down", function() {
+        console.log('R');
+        knopR = true;
+      });
+
+    });
 
   }
 
   initGame() {
     //settings
     this.speedPlayer = 300;
-    //this.maxFish = 4; gaat niet als je vissen wil resetten voor object pooling
+    //this.game.time.events.add(Phaser.Timer.MINUTE * 5, () => {this.story.play}, this);
   }
 
   initBackground() {
@@ -114,30 +148,35 @@ class Play extends Phaser.State{
     this.game.add.existing(this.background);
 
     this.backStones = this.game.add.group();
-		this.frontStones = this.game.add.group();
-		this.coral = this.game.add.group();
+    this.frontStones = this.game.add.group();
+    this.coral = this.game.add.group();
 
     for(let i = 0; i < 3; i++) {
       let backStone = new BackgroundStone(this.game, (i * 1000) + 250, this.game.height, false);
       this.backStones.add(backStone);
 
-			let frontStone = new BackgroundStone(this.game, (i * 1200) - 250, this.game.height, true);
+      let frontStone = new BackgroundStone(this.game, (i * 1200) - 250, this.game.height, true);
       this.frontStones.add(frontStone);
     }
 
-		for(let i = 0; i < 20; i++) {
-			let coral = new Coral(this.game, (i * 100), this.game.height, false);
-			this.coral.add(coral);
-		}
+    for(let i = 0; i < 20; i++) {
+      let coral = new Coral(this.game, (i * 100), this.game.height, false);
+      this.coral.add(coral);
+    }
 
-		this.game.add.existing(this.backStones);
-		this.game.add.existing(this.frontStones);
-		this.game.add.existing(this.coral);
+    this.game.add.existing(this.backStones);
+    this.game.add.existing(this.frontStones);
+    this.game.add.existing(this.coral);
 
   }
 
+  handleFeeding(color) {
+    this.player.feeding();
+    this.game.time.events.add(Phaser.Timer.SECOND * 0.5, () => {this.generateWorm(color);}, this);
+  }
+
   handleBackground() {
-		this.backStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 12,
+    this.backStonesGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 12,
       () => { this.generateObjects(this.game, ...[this.backStones], 'stones', this.game.width, this.game.height, false); }
       , this);
 
@@ -148,7 +187,6 @@ class Play extends Phaser.State{
     this.coralGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 0.5,
       () => { this.generateObjects(this.game, ...[this.coral], 'coral', this.game.width, this.game.height, true); }
       , this);
-		this.game.add.existing(this.coral);
   }
 
   generateObjects(game, objects, objectType, x, y, front) {
@@ -188,7 +226,7 @@ class Play extends Phaser.State{
 
   handleFeeding(color) {
     this.player.feeding();
-    this.game.time.events.add(Phaser.Timer.SECOND * 1.3, () => {this.generateWorm(color);}, this);
+    this.game.time.events.add(Phaser.Timer.SECOND * 0.5, () => {this.generateWorm(color);}, this);
   }
 
   generateWorm(color) {
@@ -199,61 +237,62 @@ class Play extends Phaser.State{
         this.player.body.x + this.player.body.width/2,
         this.player.body.y + this.player.body.height - 25,
         color);
-      this.worms.add(worm);
+        this.worms.add(worm);
     }
 
     worm.reset(this.player.body.x + this.player.body.width/2, this.player.body.y + this.player.body.height - 25, color);
   }
 
-	generateFish() {
+  generateFish() {
     let fishY = this.game.rnd.integerInRange(200, this.game.height - 100);
     this.generateObjects(this.game, ...[this.fish], 'fish', this.game.width, fishY, true);
   }
 
   handleWormFishCollision(worm, fish){
-		if (fish.type === worm.type) {
+    if (fish.type === worm.type) {
       worm.kill();
-			fish.eating();
+      fish.eating();
       this.yammy.play();
       this.happinessBar.makeshorter();
-		}
-	}
+    }
+  }
 
-	update(){
+  update(){
 
-		if(this.player.body){
-			this.player.body.velocity.x = 0;
-			this.player.body.velocity.y = 0;
+  if(this.player.body){
+    this.player.body.velocity.x = 0;
+    this.player.body.velocity.y = 0;
 
-			if(this.cursors.left.isDown){
-				this.player.body.velocity.x = -this.speedPlayer;
-			}
+    if(this.cursors.up.isDown || knopUP){
+      this.player.body.velocity.y = -this.speedPlayer;
+    }
 
-			if(this.cursors.right.isDown ){
-				this.player.body.velocity.x = this.speedPlayer;
-			}
+    if(this.cursors.down.isDown || knopDOWN) {
+      this.player.body.velocity.y = this.speedPlayer;
+    }
 
-			if(this.cursors.up.isDown || knopUP){
-				this.player.body.velocity.y = -this.speedPlayer;
-			}
+    if (knopR) {
+      this.handleFeeding('red');
+      knopR = false;
 
-			if(this.cursors.down.isDown) {
-				this.player.body.velocity.y = this.speedPlayer;
+    }
+    if (knopY) {
+      this.handleFeeding('yellow');
+      knopY = false;
+    }
+    if (knopG) {
+      this.handleFeeding('green');
+      knopG = false;
+    }
 
-			}
-			this.fish.forEach(fish => {
-				this.worms.forEach(worm => {
-					this.game.physics.arcade.collide(worm, fish,
-						this.handleWormFishCollision, null, this);
-					});
-				});
-			}
+    this.fish.forEach(fish => {
+      this.worms.forEach(worm => {
+        this.game.physics.arcade.collide(worm, fish,
+          this.handleWormFishCollision, null, this);
+        });
+      });
+    }
+  }
+}
 
-		}
-
-		onLoadComplete() {
-
-		}
-	}
-
-	module.exports = Play;
+module.exports = Play;

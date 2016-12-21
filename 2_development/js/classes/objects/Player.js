@@ -9,6 +9,7 @@ class Player extends Phaser.Sprite {
 		this.game.physics.arcade.enableBody(this);
     this.game.physics.arcade.enable(this);
     this.body.collideWorldBounds = true;
+    this.body.immovable = true;
 		this.lives = 3;
 	}
 
@@ -29,6 +30,18 @@ class Player extends Phaser.Sprite {
       this.swimming();
       }, this);
 	}
+
+  electrocuting() {
+    console.log('electrocuting');
+
+    this.loadTexture('player_electrocution', 0);
+    this.animations.add('electrocuting');
+    this.animations.play('electrocuting', 10, false);
+
+    this.animations.currentAnim.onComplete.add(() => {
+      this.swimming();
+      }, this);
+  }
 
   swimming() {
     this.loadTexture('player', 0);

@@ -1,6 +1,6 @@
 let fishSort;
 
-class Fish extends Phaser.Sprite { //general fish class
+class Fish extends Phaser.Sprite {
 	constructor(game, x, y, sort) {
 
     fishSort = [
@@ -50,9 +50,9 @@ class Fish extends Phaser.Sprite { //general fish class
 		this.hasScored = false;
 	}
 
-	hitwrong(){
+	/*hitwrong(){
 		this.body.velocity.x = -100;
-	}
+	}*/
 
   handleType() {
     switch(this.sort) {

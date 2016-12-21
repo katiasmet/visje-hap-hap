@@ -23,7 +23,7 @@ class Player extends Phaser.Sprite {
   feeding(){
 		this.loadTexture('player_feeding', 0);
     this.animations.add('feeding');
-    this.animations.play('feeding', 20, false);
+    this.animations.play('feeding', 30, false);
 
     this.animations.currentAnim.onComplete.add(() => {
       this.swimming();
@@ -41,14 +41,6 @@ class Player extends Phaser.Sprite {
 		}else{
 			this.alpha = 1;
 		}
-
-    /*if(this.animations.currentFrame.index === 26) {
-      console.log('feed it');
-      this.throwing = true;
-    } else {
-      this.throwing = false;
-    }*/
-
 	}
 }
 
