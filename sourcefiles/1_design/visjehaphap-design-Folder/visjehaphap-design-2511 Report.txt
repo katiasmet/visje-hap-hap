@@ -1,0 +1,406 @@
+Package Report
+
+-----------------------------------------------------------------------------
+Document:
+Name: visjehaphap-design-2511.ai
+Color Mode: RGB color
+Color Profile: none
+Ruler Units: pixels
+Artboard Dimensions: 1440 px x 900 px
+Show Images in Outline Mode: OFF
+Highlight Substituted Fonts: OFF
+Highlight Substituted Glyphs: OFF
+Preserve Text Editability
+Simulate Colored Paper: OFF
+
+-----------------------------------------------------------------------------
+Spot Color Objects:
+
+-----------------------------------------------------------------------------
+Missing Fonts:NONE
+
+-----------------------------------------------------------------------------
+Protected Fonts that were not packaged:NONE
+
+-----------------------------------------------------------------------------
+Fonts:
+NONE
+
+-----------------------------------------------------------------------------
+Embedded Fonts:
+NONE
+
+-----------------------------------------------------------------------------
+Missing Links:
+NONE
+
+-----------------------------------------------------------------------------
+Linked Images:
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/coralcoral_3.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 1260K, 538 by 600 pixels
+Dimensions: 197,265 by 219,998 points 
+Resolution: 196,365 by 196,365 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/coralcoral_6.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 582K, 410 by 364 pixels
+Dimensions: 249,207 by 221,247 points 
+Resolution: 118,456 by 118,456 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/coralcoral_5.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 718K, 291 by 632 pixels
+Dimensions: 128,142 by 278,302 points 
+Resolution: 163,506 by 163,506 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/coralcoral_4.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 718K, 291 by 632 pixels
+Dimensions: 60,558 by 131,522 points 
+Resolution: 345,981 by 345,981 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/coralcoral_2.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 1560K, 516 by 774 pixels
+Dimensions: 193,094 by 289,641 points 
+Resolution: 192,403 by 192,403 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/coralcoral_1.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 1560K, 516 by 774 pixels
+Dimensions: 168,22 by 221,711 points 
+Resolution: 220,854 by 251,354 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/stones.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 27061K, 5660 by 1224 pixels
+Dimensions: 5660 by 1224 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/stones.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 27061K, 5660 by 1224 pixels
+Dimensions: 5660 by 1224 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/stones.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 27061K, 5660 by 1224 pixels
+Dimensions: 5660 by 1224 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/stones.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 27061K, 5660 by 1224 pixels
+Dimensions: 5660 by 1224 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/stones.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 27061K, 5660 by 1224 pixels
+Dimensions: 5660 by 1224 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/stones.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 27061K, 5660 by 1224 pixels
+Dimensions: 5660 by 1224 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/stones.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 27061K, 5660 by 1224 pixels
+Dimensions: 5660 by 1224 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge.png
+Type: Grayscale
+Bits per Pixel: 8
+Channels: 1
+Size: 156K, 400 by 400 pixels
+Dimensions: 400 by 400 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge.png
+Type: Grayscale
+Bits per Pixel: 8
+Channels: 1
+Size: 156K, 400 by 400 pixels
+Dimensions: 400 by 400 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge.png
+Type: Grayscale
+Bits per Pixel: 8
+Channels: 1
+Size: 156K, 400 by 400 pixels
+Dimensions: 400 by 400 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge.png
+Type: Grayscale
+Bits per Pixel: 8
+Channels: 1
+Size: 156K, 400 by 400 pixels
+Dimensions: 400 by 400 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge.png
+Type: Grayscale
+Bits per Pixel: 8
+Channels: 1
+Size: 156K, 400 by 400 pixels
+Dimensions: 400 by 400 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/fishturtle.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 1306K, 740 by 452 pixels
+Dimensions: 396,458 by 278,019 points 
+Resolution: 134,39 by 117,057 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/fishturtle.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 1306K, 740 by 452 pixels
+Dimensions: 270,33 by 165,121 points 
+Resolution: 197,092 by 197,092 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/fishoctopus.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 1135K, 497 by 585 pixels
+Dimensions: 227,423 by 267,691 points 
+Resolution: 157,345 by 157,345 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/fishfish.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 972K, 547 by 455 pixels
+Dimensions: 306,386 by 254,855 points 
+Resolution: 128,544 by 128,544 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/fishfish.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 972K, 547 by 455 pixels
+Dimensions: 306,386 by 254,855 points 
+Resolution: 128,544 by 128,544 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/diver.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 4848K, 2166 by 573 pixels
+Dimensions: 507,243 by 134,188 points 
+Resolution: 307,45 by 307,45 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/logo.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 1237K, 695 by 456 pixels
+Dimensions: 695 by 456 points 
+Resolution: 72 by 72 pixels per inch
+
+
+(Unknown image)
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 2588K, 813 by 815 pixels
+Dimensions: 100 by 100,246 points 
+Resolution: 585,36 by 585,36 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/fishstarfish-sad.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 2588K, 813 by 815 pixels
+Dimensions: 132 by 130 points 
+Resolution: 443,455 by 451,385 pixels per inch
+
+
+/Programma's/MAMP/htdocs/visje-hap-hap/1_design/1_Workdocuments/assets/fishstarfish-happy.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 2588K, 813 by 815 pixels
+Dimensions: 132 by 130 points 
+Resolution: 443,455 by 451,385 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge.png
+Type: Grayscale
+Bits per Pixel: 8
+Channels: 1
+Size: 156K, 400 by 400 pixels
+Dimensions: 400 by 400 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
+
+
+/Gebruikers/katiasmet/Downloads/subtle_grunge/subtle_grunge_@2X.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1875K, 800 by 800 pixels
+Dimensions: 800 by 800 points 
+Resolution: 72 by 72 pixels per inch
