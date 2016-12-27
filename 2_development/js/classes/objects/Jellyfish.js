@@ -17,6 +17,7 @@ class Jellyfish extends Phaser.Sprite {
 	update(){
 
     this.body.velocity.y = -100;
+		this.body.velocity.x = -70;
 
 		if(!this.inWorld) {
 			this.exists = false;
