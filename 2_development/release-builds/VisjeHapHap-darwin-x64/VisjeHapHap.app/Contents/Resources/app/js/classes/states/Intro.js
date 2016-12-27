@@ -70,6 +70,9 @@ class Intro extends Phaser.State {
     this.backgroundSound = this.game.add.audio('backgroundSound');
     this.backgroundSound.loop = true;
     this.backgroundSound.play();
+
+    this.story = this.game.add.audio('infoText');
+    this.story.loop = false;
   }
 
   startGame() {
@@ -77,7 +80,7 @@ class Intro extends Phaser.State {
   }
 
   handleInfo() {
-    //audiofile
+    this.story.play();
     console.log('info');
   }
 }
