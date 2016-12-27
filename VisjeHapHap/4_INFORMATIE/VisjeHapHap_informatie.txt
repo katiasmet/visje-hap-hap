@@ -1,0 +1,12 @@
+VISJE HAP HAP
+
+Visje Hap Hap is een interactieve installatie gericht op kleuter van 3 tot 6 jaars. Zowel het spel als de installatie is zo simpel mogelijk gehouden. Het is de bedoeling dat kleuters de vissen in de oceaan eten geven. Een vis kan enkel eten opeten in dezelfde kleur als de vis bv. de gele vis kan enkel gele wormen opeten dus de kleuter moet op de gele knop drukken. Op deze manier leren kleuters kleuren herkennen en verbindingen leggen. Daarnaast kan de duiker bediend worden d.m.v. een joystick. Het spel heeft geen einde en kan een hele dag draaien zonder begeleiding. Hierdoor ontdekking kleuters wat de betekenis achter een bepaalde knop is. Bovendien richten we ons vooral op positiviteit en waardering doordat de kleuter niet kan verliezen in het spel.
+We hebben ingespeeld op een grafische afwerking om het voor de kleuters aantrekkelijk te maken. De installatie lijkt op een aquarium en is afgewerkt met led-verlichting. Qua technologie gebruiken we een Arduino Uno, enkele arcade knoppen en ledverlichting. Het spel kan zowel op Windows als OS gespeeld worden.
+Visje Hap Hap is een installatie geproduceerd door Arne Deprez en Katia Smet in opdracht van de opleiding Devine aan Howest in samenwerking met JEFF.
+
+
+FISHY NJAM NJAM
+
+Fishy Njam Njam was build with very young kids in mind. That is why everything needed to be as simple as possible. Kids can come whenever they want and the game will always be ready to play.
+The controls are very simple so no explanation is needed, 1 joystick for movement and 3 large glowing buttons for action.
+The game is set in the wonderful world of the deep ocean. The player controls a diver. The diver can feed the hungry fishes by trowing food at then, but only the right color food wil make a fishy happy. The color of the food is controlled with the 3 buttons on the machine.
